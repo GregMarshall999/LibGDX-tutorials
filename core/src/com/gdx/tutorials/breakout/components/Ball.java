@@ -1,16 +1,18 @@
 package com.gdx.tutorials.breakout.components;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.gdx.tutorials.breakout.util.CollisionUtil;
+
+import java.util.List;
 
 public class Ball implements GameComponent {
-    private int x, y;
-    private int xSpeed, ySpeed;
+    private int x;
+    private int y;
+    private int xSpeed;
+    private int ySpeed;
 
     private final int radius;
-
-    private Color color = Color.WHITE;
 
     public Ball(int x, int y, int radius, int xSpeed, int ySpeed) {
         this.x = x;
@@ -25,22 +27,45 @@ public class Ball implements GameComponent {
         x += xSpeed;
         y += ySpeed;
 
-        if(x < radius || x > Gdx.graphics.getWidth() - radius)
+        if (x < radius || x > Gdx.graphics.getWidth() - radius)
             xSpeed = -xSpeed;
-
-        if(y < radius || y > Gdx.graphics.getHeight() - radius)
+        if (y < radius || y > Gdx.graphics.getHeight() - radius)
             ySpeed = -ySpeed;
     }
 
     @Override
-    public void draw(ShapeRenderer renderer) {
-        renderer.setColor(color);
-        renderer.circle(x, y, radius);
-        renderer.setColor(Color.WHITE);
+    public void draw(ShapeRenderer shapeRenderer) {
+        shapeRenderer.circle(x, y, radius);
     }
 
     @Override
-    public ComponentType getComponentType() {
-        return ComponentType.BALL;
+    public int getWidth() {
+        return radius*2;
+    }
+
+    @Override
+    public int getHeight() {
+        return radius*2;
+    }
+
+    @Override
+    public int getOriginX() {
+        return x - radius;
+    }
+
+    @Override
+    public int getOriginY() {
+        return y - radius;
+    }
+
+    public void checkCollision(List<GameComponent> components) {
+        for(GameComponent component : components) {
+            if(component != this)
+                if(CollisionUtil.isColliding(this, component)) {
+                    ySpeed = -ySpeed;
+                    if(component instanceof Block)
+                        ((Block)component).destroy();
+                }
+        }
     }
 }

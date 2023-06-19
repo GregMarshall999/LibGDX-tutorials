@@ -3,31 +3,51 @@ package com.gdx.tutorials.breakout.components;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
-public class Paddle implements GameComponent {
-    private int x, y;
+public class Paddle implements GameComponent{
+    private int x;
+
+    private final int y;
     private final int width;
     private final int height;
 
     public Paddle() {
-        x = Gdx.input.getX();
-        y = 10;
+        this.x = Gdx.input.getX();
+        this.y = 20;
         width = 100;
-        height = 10;
+        height = 5;
     }
 
     @Override
     public void update() {
-        x = Gdx.input.getX() - width/2;
-        y = Gdx.graphics.getHeight() - Gdx.input.getY() - height/2;
+        x = Gdx.input.getX();
     }
 
     @Override
-    public void draw(ShapeRenderer renderer) {
-        renderer.rect(x, y, width, height);
+    public void draw(ShapeRenderer shapeRenderer) {
+        shapeRenderer.rect(
+                x - width/2f,
+                y - height/2f,
+                width,
+                height);
     }
 
     @Override
-    public ComponentType getComponentType() {
-        return ComponentType.PADDLE;
+    public int getOriginX() {
+        return x - width/2;
+    }
+
+    @Override
+    public int getOriginY() {
+        return y - height/2;
+    }
+
+    @Override
+    public int getWidth() {
+        return width;
+    }
+
+    @Override
+    public int getHeight() {
+        return height;
     }
 }
