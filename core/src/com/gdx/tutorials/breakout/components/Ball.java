@@ -33,4 +33,9 @@ public class Ball implements GameComponent {
     public void draw(ShapeRenderer renderer) {
         renderer.circle(x, y, radius);
     }
+
+    @Override
+    public ComponentType getComponentType() {
+        return ComponentType.BALL;
+    }
 }
