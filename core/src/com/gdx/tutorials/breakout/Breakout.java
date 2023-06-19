@@ -9,6 +9,7 @@ public class Breakout extends ApplicationAdapter {
     private ShapeRenderer shapeRenderer;
 
     private int x = 50, y = 50;
+    private int xSpeed = 5;
 
     @Override
     public void create() {
@@ -19,7 +20,11 @@ public class Breakout extends ApplicationAdapter {
     public void render() {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        x += 5;
+        x += xSpeed;
+        if(x > Gdx.graphics.getWidth())
+            xSpeed = -5;
+        if(x < 0)
+            xSpeed = 5;
 
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
         shapeRenderer.circle(x, y, 50);
