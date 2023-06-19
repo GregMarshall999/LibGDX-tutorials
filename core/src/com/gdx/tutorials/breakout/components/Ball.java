@@ -1,6 +1,7 @@
 package com.gdx.tutorials.breakout.components;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 public class Ball implements GameComponent {
@@ -8,6 +9,8 @@ public class Ball implements GameComponent {
     private int xSpeed, ySpeed;
 
     private final int radius;
+
+    private Color color = Color.WHITE;
 
     public Ball(int x, int y, int radius, int xSpeed, int ySpeed) {
         this.x = x;
@@ -31,7 +34,9 @@ public class Ball implements GameComponent {
 
     @Override
     public void draw(ShapeRenderer renderer) {
+        renderer.setColor(color);
         renderer.circle(x, y, radius);
+        renderer.setColor(Color.WHITE);
     }
 
     @Override

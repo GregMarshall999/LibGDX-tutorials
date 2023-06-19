@@ -23,9 +23,10 @@ public class Breakout extends ApplicationAdapter {
         gameComponents.add(new Ball(
                 Gdx.graphics.getWidth() / 2,
                 Gdx.graphics.getHeight() / 2,
-                10,
-                5,
-                5));
+                25, 0, 0));
+//                10,
+//                5,
+//                5));
 
         gameComponents.add(new Paddle());
     }
