@@ -22,10 +22,10 @@ public class Ball implements GameComponent {
         x += xSpeed;
         y += ySpeed;
 
-        if(x < 0 || x > Gdx.graphics.getWidth())
+        if(x < radius || x > Gdx.graphics.getWidth() - radius)
             xSpeed = -xSpeed;
 
-        if(y < 0 || y > Gdx.graphics.getHeight())
+        if(y < radius || y > Gdx.graphics.getHeight() - radius)
             ySpeed = -ySpeed;
     }
 
