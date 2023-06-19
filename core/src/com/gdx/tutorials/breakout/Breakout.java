@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.gdx.tutorials.breakout.components.Ball;
 import com.gdx.tutorials.breakout.components.GameComponent;
+import com.gdx.tutorials.breakout.components.Paddle;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +26,8 @@ public class Breakout extends ApplicationAdapter {
                 10,
                 5,
                 5));
+
+        gameComponents.add(new Paddle());
     }
 
     @Override
