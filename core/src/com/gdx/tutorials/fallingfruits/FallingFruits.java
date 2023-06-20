@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.physics.box2d.Box2D;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 
 import static com.gdx.tutorials.fallingfruits.banks.SpriteBank.drawSprite;
@@ -21,6 +22,8 @@ public class FallingFruits extends ApplicationAdapter {
 
     @Override
     public void create() {
+        Box2D.init();
+
         batch = new SpriteBatch();
 
         camera = new OrthographicCamera();
