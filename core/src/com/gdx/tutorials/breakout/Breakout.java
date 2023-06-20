@@ -16,6 +16,8 @@ public class Breakout extends ApplicationAdapter {
     private ShapeRenderer shape;
     private List<GameComponent> components;
 
+    private final int BALL_SPEED = 3;
+
     @Override
     public void create () {
         shape = new ShapeRenderer();
@@ -25,7 +27,7 @@ public class Breakout extends ApplicationAdapter {
                 Gdx.graphics.getWidth() / 2,
                 50,
                 10,
-                5, 5));
+                BALL_SPEED, BALL_SPEED));
 
         components.add(new Paddle());
 
