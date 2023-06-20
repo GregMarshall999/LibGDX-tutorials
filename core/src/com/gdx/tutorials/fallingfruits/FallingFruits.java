@@ -4,10 +4,12 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
+
+import static com.gdx.tutorials.fallingfruits.banks.SpriteBank.drawSprite;
+import static com.gdx.tutorials.fallingfruits.banks.SpriteBank.initBank;
 
 public class FallingFruits extends ApplicationAdapter {
     private SpriteBatch batch;
@@ -16,7 +18,6 @@ public class FallingFruits extends ApplicationAdapter {
     private ExtendViewport viewport;
 
     private TextureAtlas textureAtlas;
-    private Sprite banana;
 
     @Override
     public void create() {
@@ -26,7 +27,8 @@ public class FallingFruits extends ApplicationAdapter {
         viewport = new ExtendViewport(800, 600, camera);
 
         textureAtlas = new TextureAtlas("fallingfruits/sprites.txt");
-        banana = textureAtlas.createSprite("banana");
+
+        initBank(textureAtlas);
     }
 
     @Override
@@ -36,11 +38,8 @@ public class FallingFruits extends ApplicationAdapter {
 
         batch.begin();
 
-        banana.setPosition(0, 0);
-        banana.draw(batch);
-
-        banana.setPosition(100, 100);
-        banana.draw(batch);
+        drawSprite(batch, "banana", 0, 0);
+        drawSprite(batch, "cherries", 100, 100);
 
         batch.end();
     }
