@@ -1,6 +1,7 @@
-package com.gdx.tutorials.FLGT.screen;
+package com.gdx.tutorials.FLGT.display;
 
 import com.gdx.tutorials.FLGT.FLGT;
+import com.gdx.tutorials.FLGT.display.screen.*;
 
 public abstract class ScreenUtil {
     private static LoadingScreen loadingScreen;

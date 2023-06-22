@@ -1,9 +1,10 @@
-package com.gdx.tutorials.FLGT.screen;
+package com.gdx.tutorials.FLGT.display.screen;
 
 import com.gdx.tutorials.FLGT.FLGT;
+import com.gdx.tutorials.FLGT.display.AbstractFLGTScreen;
 
-public class EndScreen extends AbstractFLGTScreen {
-    public EndScreen(FLGT context) {
+public class PreferenceScreen extends AbstractFLGTScreen {
+    public PreferenceScreen(FLGT context) {
         super(context);
     }
 

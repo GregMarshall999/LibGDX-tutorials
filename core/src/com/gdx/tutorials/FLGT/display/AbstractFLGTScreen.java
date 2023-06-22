@@ -1,4 +1,4 @@
-package com.gdx.tutorials.FLGT.screen;
+package com.gdx.tutorials.FLGT.display;
 
 import com.badlogic.gdx.Screen;
 import com.gdx.tutorials.FLGT.FLGT;
