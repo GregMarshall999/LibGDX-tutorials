@@ -63,7 +63,7 @@ public class MenuScreen extends AbstractFLGTScreen {
 
         //UI table init
         table.setFillParent(true);
-        table.setDebug(true);
+        //table.setDebug(true);
         stage.addActor(table);
 
         //adding buttons to table
