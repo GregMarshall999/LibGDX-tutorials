@@ -11,49 +11,44 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.gdx.tutorials.FLGT.FLGT;
 import com.gdx.tutorials.FLGT.display.AbstractFLGTScreen;
-import com.gdx.tutorials.FLGT.display.FLGTButton;
-import com.gdx.tutorials.FLGT.display.FLGTScreen;
-import com.gdx.tutorials.FLGT.display.ScreenUtil;
-
-import java.util.HashMap;
-import java.util.Map;
-
-import static com.gdx.tutorials.FLGT.display.FLGTButton.*;
+import com.gdx.tutorials.FLGT.display.constants.FLGTScreen;
+import com.gdx.tutorials.FLGT.tools.ScreenUtil;
 
 public class MenuScreen extends AbstractFLGTScreen {
     private Stage stage;
     private Table table;
     private Skin skin;
 
-    private Map<FLGTButton, TextButton> buttons = new HashMap<>();
+    private TextButton newGame;
+    private TextButton preferences;
+    private TextButton exit;
 
     public MenuScreen(FLGT context) {
         super(context);
 
         stage = new Stage(new ScreenViewport());
-        Gdx.input.setInputProcessor(stage);
         table = new Table();
         skin = new Skin(Gdx.files.internal("skin/glassy-ui.json"));
 
         //buttons init
-        buttons.put(NEW_GAME, new TextButton(NEW_GAME.getName(), skin));
-        buttons.put(PREFERENCES, new TextButton(PREFERENCES.getName(), skin));
-        buttons.put(EXIT, new TextButton(EXIT.getName(), skin));
+        newGame = new TextButton("New Game", skin);
+        preferences = new TextButton("Preferences", skin);
+        exit = new TextButton("Exit", skin);
 
         //button events init
-        buttons.get(NEW_GAME).addListener(new ChangeListener() {
+        newGame.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 ScreenUtil.changeScreen(context, FLGTScreen.APPLICATION);
             }
         });
-        buttons.get(PREFERENCES).addListener(new ChangeListener() {
+        preferences.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 ScreenUtil.changeScreen(context, FLGTScreen.PREFERENCE);
             }
         });
-        buttons.get(EXIT).addListener(new ChangeListener() {
+        exit.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 Gdx.app.exit();
@@ -63,17 +58,22 @@ public class MenuScreen extends AbstractFLGTScreen {
 
     @Override
     public void show() {
+        stage.clear();
+        table.clear();
+
         //UI table init
         table.setFillParent(true);
         table.setDebug(true);
         stage.addActor(table);
 
         //adding buttons to table
-        table.add(buttons.get(NEW_GAME)).fillX().uniformX();
+        table.add(newGame).fillX().uniformX();
         table.row().pad(10, 0, 10, 0);
-        table.add(buttons.get(PREFERENCES)).fillX().uniformX();
+        table.add(preferences).fillX().uniformX();
         table.row();
-        table.add(buttons.get(EXIT)).fillX().uniformX();
+        table.add(exit).fillX().uniformX();
+
+        Gdx.input.setInputProcessor(stage);
     }
 
     @Override

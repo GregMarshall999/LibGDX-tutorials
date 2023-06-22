@@ -1,4 +1,4 @@
-package com.gdx.tutorials.FLGT.display;
+package com.gdx.tutorials.FLGT.display.constants;
 
 public enum FLGTScreen {
     MENU(0),

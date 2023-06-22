@@ -2,8 +2,8 @@ package com.gdx.tutorials.FLGT.display.screen;
 
 import com.gdx.tutorials.FLGT.FLGT;
 import com.gdx.tutorials.FLGT.display.AbstractFLGTScreen;
-import com.gdx.tutorials.FLGT.display.FLGTScreen;
-import com.gdx.tutorials.FLGT.display.ScreenUtil;
+import com.gdx.tutorials.FLGT.display.constants.FLGTScreen;
+import com.gdx.tutorials.FLGT.tools.ScreenUtil;
 
 public class LoadingScreen extends AbstractFLGTScreen {
     public LoadingScreen(FLGT context) {
