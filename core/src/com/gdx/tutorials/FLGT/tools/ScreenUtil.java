@@ -1,7 +1,7 @@
 package com.gdx.tutorials.FLGT.tools;
 
 import com.gdx.tutorials.FLGT.FLGT;
-import com.gdx.tutorials.FLGT.display.constants.FLGTScreen;
+import com.gdx.tutorials.FLGT.display.FLGTScreen;
 import com.gdx.tutorials.FLGT.display.screen.*;
 
 public abstract class ScreenUtil {

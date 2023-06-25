@@ -10,7 +10,7 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.gdx.tutorials.FLGT.FLGT;
 import com.gdx.tutorials.FLGT.tools.AppPreferences;
 import com.gdx.tutorials.FLGT.display.AbstractFLGTScreen;
-import com.gdx.tutorials.FLGT.display.constants.FLGTScreen;
+import com.gdx.tutorials.FLGT.display.FLGTScreen;
 import com.gdx.tutorials.FLGT.tools.ScreenUtil;
 
 public class PreferenceScreen extends AbstractFLGTScreen {
