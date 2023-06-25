@@ -4,19 +4,19 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
-import com.gdx.tutorials.FLGT.game.B2dModel;
+import com.gdx.tutorials.FLGT.game.FLGTWorld;
 import com.gdx.tutorials.FLGT.FLGT;
 import com.gdx.tutorials.FLGT.display.AbstractFLGTScreen;
 
 public class MainScreen extends AbstractFLGTScreen {
-    private B2dModel model;
+    private FLGTWorld model;
     private OrthographicCamera camera;
     private Box2DDebugRenderer debugRenderer;
 
     public MainScreen(FLGT context) {
         super(context);
 
-        model = new B2dModel();
+        model = new FLGTWorld();
         camera = new OrthographicCamera(32, 24);
         debugRenderer = new Box2DDebugRenderer(true, true, true, true, true, true);
     }
