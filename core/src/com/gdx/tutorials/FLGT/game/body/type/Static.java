@@ -1,4 +1,4 @@
-package com.gdx.tutorials.FLGT.game.body;
+package com.gdx.tutorials.FLGT.game.body.type;
 
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;

@@ -1,12 +1,12 @@
-package com.gdx.tutorials.FLGT.game.body;
+package com.gdx.tutorials.FLGT.game.body.type;
 
 import com.badlogic.gdx.physics.box2d.*;
 
-public class Kinematic {
-    public Kinematic(World world) {
+public class Dynamic {
+    public Dynamic(World world) {
         BodyDef bodyDef = new BodyDef();
-        bodyDef.type = BodyDef.BodyType.KinematicBody;
-        bodyDef.position.set(0, -12);
+        bodyDef.type = BodyDef.BodyType.DynamicBody;
+        bodyDef.position.set(0, 0);
 
         Body body = world.createBody(bodyDef);
 
@@ -20,7 +20,5 @@ public class Kinematic {
         body.createFixture(shape, 0.0f);
 
         shape.dispose();
-
-        body.setLinearVelocity(0, 0.75f);
     }
 }
