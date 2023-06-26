@@ -100,6 +100,11 @@ public final class BodyFactory {
         polygon.dispose();
     }
 
+    public void makeAllFixturesSensors(Body body) {
+        for(Fixture fixture : body.getFixtureList())
+            fixture.setSensor(true);
+    }
+
     private static FixtureDef makeFixture(MaterialType material, Shape shape) {
         FixtureDef fixtureDef = new FixtureDef();
 
