@@ -1,10 +1,12 @@
 package com.gdx.tutorials.FLGT.game;
 
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.World;
-import com.gdx.tutorials.FLGT.control.KeyBoardController;
+import com.gdx.tutorials.FLGT.control.PCController;
 import com.gdx.tutorials.FLGT.game.body.BodyFactory;
 import com.gdx.tutorials.FLGT.game.body.BodyUserData;
 import com.gdx.tutorials.FLGT.game.body.CollisionListener;
@@ -14,7 +16,8 @@ import com.gdx.tutorials.FLGT.game.body.type.Static;
 public class FLGTWorld {
     private World world;
     private BodyFactory bodyFactory;
-    private KeyBoardController controller;
+    private PCController controller;
+    private OrthographicCamera camera;
 
     private Static floor;
     private Body player;
@@ -22,8 +25,9 @@ public class FLGTWorld {
 
     private boolean isSwimming = false;
 
-    public FLGTWorld(KeyBoardController controller) {
+    public FLGTWorld(PCController controller, OrthographicCamera camera) {
         this.controller = controller;
+        this.camera = camera;
 
         world = new World(new Vector2(0, -10f), true);
         world.setContactListener(new CollisionListener(this));
@@ -43,6 +47,9 @@ public class FLGTWorld {
     }
 
     public void logicStep(float delta) {
+        if(controller.mouse1Down && pointIntersectsBody(player, controller.mouseLocation))
+            System.out.println("Player was clicked");
+
         if(controller.left)
             player.applyForceToCenter(-10, 0, true);
         else if(controller.right)
@@ -60,5 +67,12 @@ public class FLGTWorld {
 
     public void setSwimming(boolean swimming) {
         isSwimming = swimming;
+    }
+
+    public boolean pointIntersectsBody(Body body, Vector2 mouseLocation) {
+        Vector3 mousePos = new Vector3(mouseLocation, 0);
+        camera.unproject(mousePos);
+
+        return body.getFixtureList().first().testPoint(mousePos.x, mousePos.y);
     }
 }
