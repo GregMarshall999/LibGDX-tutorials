@@ -3,6 +3,8 @@ package com.gdx.tutorials.FLGT.display.screen;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.gdx.tutorials.FLGT.control.PCController;
 import com.gdx.tutorials.FLGT.game.FLGTWorld;
@@ -15,6 +17,10 @@ public class MainScreen extends AbstractFLGTScreen {
     private Box2DDebugRenderer debugRenderer;
     private PCController controller;
 
+    private Texture playerTex;
+
+    private SpriteBatch batch;
+
     public MainScreen(FLGT context) {
         super(context);
 
@@ -22,6 +28,14 @@ public class MainScreen extends AbstractFLGTScreen {
         camera = new OrthographicCamera(32, 24);
         world = new FLGTWorld(controller, camera);
         debugRenderer = new Box2DDebugRenderer(true, true, true, true, true, true);
+
+        batch = new SpriteBatch();
+        batch.setProjectionMatrix(camera.combined);
+
+        this.context.getAssetManager().queueAddImages();
+        this.context.getAssetManager().finishLoading();
+
+        playerTex = context.getAssetManager().get(context.getAssetManager().playerImage);
     }
 
     @Override
@@ -35,6 +49,11 @@ public class MainScreen extends AbstractFLGTScreen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         world.logicStep(delta);
+
+        batch.begin();
+        batch.draw(playerTex, world.player.getPosition().x-1, world.player.getPosition().y-1, 2, 2);
+        batch.end();
+
         debugRenderer.render(world.getWorld(), camera.combined);
     }
 

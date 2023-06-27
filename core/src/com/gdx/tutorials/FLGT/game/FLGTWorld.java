@@ -20,8 +20,9 @@ public class FLGTWorld {
     private OrthographicCamera camera;
 
     private Static floor;
-    private Body player;
     private Body water;
+
+    public Body player;
 
     private boolean isSwimming = false;
 
