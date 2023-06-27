@@ -1,10 +1,10 @@
 package com.gdx.tutorials.FLGT.game;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.World;
+import com.gdx.tutorials.FLGT.control.KeyBoardController;
 import com.gdx.tutorials.FLGT.game.body.BodyFactory;
 import com.gdx.tutorials.FLGT.game.body.BodyUserData;
 import com.gdx.tutorials.FLGT.game.body.CollisionListener;
@@ -14,6 +14,7 @@ import com.gdx.tutorials.FLGT.game.body.type.Static;
 public class FLGTWorld {
     private World world;
     private BodyFactory bodyFactory;
+    private KeyBoardController controller;
 
     private Static floor;
     private Body player;
@@ -21,7 +22,9 @@ public class FLGTWorld {
 
     private boolean isSwimming = false;
 
-    public FLGTWorld() {
+    public FLGTWorld(KeyBoardController controller) {
+        this.controller = controller;
+
         world = new World(new Vector2(0, -10f), true);
         world.setContactListener(new CollisionListener(this));
         bodyFactory = BodyFactory.getInstance(world);
@@ -40,8 +43,18 @@ public class FLGTWorld {
     }
 
     public void logicStep(float delta) {
+        if(controller.left)
+            player.applyForceToCenter(-10, 0, true);
+        else if(controller.right)
+            player.applyForceToCenter(10, 0, true);
+        else if(controller.up)
+            player.applyForceToCenter(0, 10, true);
+        else if(controller.down)
+            player.applyForceToCenter(0, -10, true);
+
         if(isSwimming)
             player.applyForceToCenter(0, 50, true);
+
         world.step(delta, 3, 3);
     }
 
