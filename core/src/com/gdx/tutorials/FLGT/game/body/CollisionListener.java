@@ -2,6 +2,7 @@ package com.gdx.tutorials.FLGT.game.body;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
+import com.gdx.tutorials.FLGT.game.FLGTSound;
 import com.gdx.tutorials.FLGT.game.FLGTWorld;
 
 public class CollisionListener implements ContactListener {
@@ -54,5 +55,6 @@ public class CollisionListener implements ContactListener {
     private void shootUpInAir(Fixture staticFixture, Fixture otherFixture) {
         System.out.println("Adding force");
         otherFixture.getBody().applyForceToCenter(new Vector2(-1000, -1000), true);
+        parentWorld.playSound(FLGTSound.BOING);
     }
 }

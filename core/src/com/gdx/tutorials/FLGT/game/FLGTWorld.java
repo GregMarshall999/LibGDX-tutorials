@@ -1,5 +1,6 @@
 package com.gdx.tutorials.FLGT.game;
 
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
@@ -12,12 +13,17 @@ import com.gdx.tutorials.FLGT.game.body.BodyUserData;
 import com.gdx.tutorials.FLGT.game.body.CollisionListener;
 import com.gdx.tutorials.FLGT.game.body.material.MaterialType;
 import com.gdx.tutorials.FLGT.game.body.type.Static;
+import com.gdx.tutorials.FLGT.loader.FLGTAssets;
 
 public class FLGTWorld {
     private World world;
     private BodyFactory bodyFactory;
     private PCController controller;
     private OrthographicCamera camera;
+    private FLGTAssets assets;
+
+    private Sound ping;
+    private Sound boing;
 
     private Static floor;
     private Body water;
@@ -26,9 +32,16 @@ public class FLGTWorld {
 
     private boolean isSwimming = false;
 
-    public FLGTWorld(PCController controller, OrthographicCamera camera) {
+    public FLGTWorld(PCController controller, OrthographicCamera camera, FLGTAssets assets) {
         this.controller = controller;
         this.camera = camera;
+        this.assets = assets;
+
+        assets.queueAddSounds();
+        assets.finishLoading();
+
+        ping = assets.get(assets.pingSound, Sound.class);
+        boing = assets.get(assets.boingSound, Sound.class);
 
         world = new World(new Vector2(0, -10f), true);
         world.setContactListener(new CollisionListener(this));
@@ -75,5 +88,12 @@ public class FLGTWorld {
         camera.unproject(mousePos);
 
         return body.getFixtureList().first().testPoint(mousePos.x, mousePos.y);
+    }
+
+    public void playSound(FLGTSound sound) {
+        switch (sound) {
+            case PING -> ping.play();
+            case BOING -> boing.play();
+        }
     }
 }

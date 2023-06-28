@@ -24,16 +24,16 @@ public class MainScreen extends AbstractFLGTScreen {
     public MainScreen(FLGT context) {
         super(context);
 
+        this.context.getAssetManager().queueAddImages();
+        this.context.getAssetManager().finishLoading();
+
         controller = new PCController();
         camera = new OrthographicCamera(32, 24);
-        world = new FLGTWorld(controller, camera);
+        world = new FLGTWorld(controller, camera, this.context.getAssetManager());
         debugRenderer = new Box2DDebugRenderer(true, true, true, true, true, true);
 
         batch = new SpriteBatch();
         batch.setProjectionMatrix(camera.combined);
-
-        this.context.getAssetManager().queueAddImages();
-        this.context.getAssetManager().finishLoading();
 
         playerTex = context.getAssetManager().get(context.getAssetManager().playerImage);
     }
