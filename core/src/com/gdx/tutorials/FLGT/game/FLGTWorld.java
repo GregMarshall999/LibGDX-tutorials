@@ -1,5 +1,6 @@
 package com.gdx.tutorials.FLGT.game;
 
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector2;
@@ -25,6 +26,8 @@ public class FLGTWorld {
     private Sound ping;
     private Sound boing;
 
+    private Music music;
+
     private Static floor;
     private Body water;
 
@@ -37,11 +40,15 @@ public class FLGTWorld {
         this.camera = camera;
         this.assets = assets;
 
+        assets.queueAddMusic();
         assets.queueAddSounds();
         assets.finishLoading();
 
         ping = assets.get(assets.pingSound, Sound.class);
         boing = assets.get(assets.boingSound, Sound.class);
+
+        music = assets.get(assets.music, Music.class);
+        music.play();
 
         world = new World(new Vector2(0, -10f), true);
         world.setContactListener(new CollisionListener(this));

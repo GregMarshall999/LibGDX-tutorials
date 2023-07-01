@@ -1,6 +1,7 @@
 package com.gdx.tutorials.FLGT.loader;
 
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 
@@ -13,6 +14,8 @@ public class FLGTAssets {
     public final String boingSound = "flgt/sounds/boing.wav";
     public final String pingSound = "flgt/sounds/ping.wav";
 
+    public final String music = "flgt/music/music.mp3";
+
     public void queueAddImages() {
         manager.load(playerImage, Texture.class);
         manager.load(enemyImage, Texture.class);
@@ -21,6 +24,10 @@ public class FLGTAssets {
     public void queueAddSounds() {
         manager.load(boingSound, Sound.class);
         manager.load(pingSound, Sound.class);
+    }
+
+    public void queueAddMusic() {
+        manager.load(music, Music.class);
     }
 
     public void finishLoading() {
