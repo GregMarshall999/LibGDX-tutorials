@@ -6,7 +6,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
-import com.gdx.tutorials.FLGT.control.PCController;
+import com.gdx.tutorials.FLGT.control.PCControls;
 import com.gdx.tutorials.FLGT.game.FLGTWorld;
 import com.gdx.tutorials.FLGT.FLGT;
 import com.gdx.tutorials.FLGT.display.AbstractFLGTScreen;
@@ -15,7 +15,7 @@ public class MainScreen extends AbstractFLGTScreen {
     private FLGTWorld world;
     private OrthographicCamera camera;
     private Box2DDebugRenderer debugRenderer;
-    private PCController controller;
+    private PCControls controller;
 
     private Texture playerTex;
 
@@ -27,7 +27,7 @@ public class MainScreen extends AbstractFLGTScreen {
         this.context.assetManager.queueAddAllImages();
         this.context.assetManager.finishLoading();
 
-        controller = new PCController();
+        controller = new PCControls();
         camera = new OrthographicCamera(32, 24);
         world = new FLGTWorld(controller, camera, this.context.assetManager);
         debugRenderer = new Box2DDebugRenderer(true, true, true, true, true, true);

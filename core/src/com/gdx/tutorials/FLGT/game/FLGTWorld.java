@@ -8,7 +8,8 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.World;
-import com.gdx.tutorials.FLGT.control.PCController;
+import com.gdx.tutorials.FLGT.control.ControllerUtility;
+import com.gdx.tutorials.FLGT.control.PCControls;
 import com.gdx.tutorials.FLGT.game.body.BodyFactory;
 import com.gdx.tutorials.FLGT.game.body.BodyUserData;
 import com.gdx.tutorials.FLGT.game.body.CollisionListener;
@@ -19,7 +20,7 @@ import com.gdx.tutorials.FLGT.load.FLGTAssets;
 public class FLGTWorld {
     private World world;
     private BodyFactory bodyFactory;
-    private PCController controller;
+    private PCControls controller;
     private OrthographicCamera camera;
     private FLGTAssets assets;
 
@@ -35,7 +36,7 @@ public class FLGTWorld {
 
     private boolean isSwimming = false;
 
-    public FLGTWorld(PCController controller, OrthographicCamera camera, FLGTAssets assets) {
+    public FLGTWorld(PCControls controller, OrthographicCamera camera, FLGTAssets assets) {
         this.controller = controller;
         this.camera = camera;
         this.assets = assets;
@@ -68,16 +69,16 @@ public class FLGTWorld {
     }
 
     public void logicStep(float delta) {
-        if(controller.mouse1Down && pointIntersectsBody(player, controller.mouseLocation))
+        if(ControllerUtility.mouse1Down && pointIntersectsBody(player, ControllerUtility.mouseLocation))
             System.out.println("Player was clicked");
 
-        if(controller.left)
+        if(ControllerUtility.left)
             player.applyForceToCenter(-10, 0, true);
-        else if(controller.right)
+        else if(ControllerUtility.right)
             player.applyForceToCenter(10, 0, true);
-        else if(controller.up)
+        else if(ControllerUtility.up)
             player.applyForceToCenter(0, 10, true);
-        else if(controller.down)
+        else if(ControllerUtility.down)
             player.applyForceToCenter(0, -10, true);
 
         if(isSwimming)
