@@ -12,6 +12,7 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.gdx.tutorials.FLGT.FLGT;
 import com.gdx.tutorials.FLGT.display.AbstractFLGTScreen;
 import com.gdx.tutorials.FLGT.display.FLGTScreen;
+import com.gdx.tutorials.FLGT.load.FLGTAssets;
 import com.gdx.tutorials.FLGT.tools.ScreenUtil;
 
 public class MenuScreen extends AbstractFLGTScreen {
@@ -26,9 +27,12 @@ public class MenuScreen extends AbstractFLGTScreen {
     public MenuScreen(FLGT context) {
         super(context);
 
+        this.context.getAssetManager().queueAddSkin();
+        this.context.getAssetManager().finishLoading();
+
         stage = new Stage(new ScreenViewport());
         table = new Table();
-        skin = new Skin(Gdx.files.internal("skin/glassy-ui.json"));
+        skin = this.context.getAssetManager().get(new FLGTAssets().skin);
 
         //buttons init
         newGame = new TextButton("New Game", skin);

@@ -1,9 +1,11 @@
-package com.gdx.tutorials.FLGT.loader;
+package com.gdx.tutorials.FLGT.load;
 
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.assets.loaders.SkinLoader;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
 public class FLGTAssets {
     private final AssetManager manager = new AssetManager();
@@ -15,6 +17,8 @@ public class FLGTAssets {
     public final String pingSound = "flgt/sounds/ping.wav";
 
     public final String music = "flgt/music/music.mp3";
+
+    public final String skin = "flgt/skin/glassy-ui.json";
 
     public void queueAddImages() {
         manager.load(playerImage, Texture.class);
@@ -28,6 +32,13 @@ public class FLGTAssets {
 
     public void queueAddMusic() {
         manager.load(music, Music.class);
+    }
+
+    public void queueAddSkin() {
+        String atlasSkin = skin.split("\\.")[0] + ".atlas";
+
+        SkinLoader.SkinParameter params = new SkinLoader.SkinParameter(atlasSkin);
+        manager.load(skin, Skin.class, params);
     }
 
     public void finishLoading() {
