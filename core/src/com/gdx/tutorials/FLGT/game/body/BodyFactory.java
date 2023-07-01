@@ -3,7 +3,7 @@ package com.gdx.tutorials.FLGT.game.body;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.gdx.tutorials.FLGT.game.body.material.MaterialType;
-import com.gdx.tutorials.FLGT.tools.GameConstants;
+import com.gdx.tutorials.FLGT.data.GameConstants;
 
 public final class BodyFactory {
     private final World world;

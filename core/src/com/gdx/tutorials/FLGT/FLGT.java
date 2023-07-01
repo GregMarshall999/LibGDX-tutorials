@@ -2,17 +2,18 @@ package com.gdx.tutorials.FLGT;
 
 import com.badlogic.gdx.Game;
 import com.gdx.tutorials.FLGT.load.FLGTAssets;
-import com.gdx.tutorials.FLGT.tools.ScreenUtil;
+import com.gdx.tutorials.FLGT.display.DisplayUtility;
 
 public class FLGT extends Game {
-    private FLGTAssets assetManager = new FLGTAssets();
+    public FLGTAssets assetManager = new FLGTAssets();
 
     @Override
     public void create() {
-        ScreenUtil.initLoading(this);
+        DisplayUtility.initLoading(this);
     }
 
-    public FLGTAssets getAssetManager() {
-        return assetManager;
+    @Override
+    public void dispose() {
+        assetManager.dispose();
     }
 }

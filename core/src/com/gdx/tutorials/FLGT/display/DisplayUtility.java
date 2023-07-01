@@ -1,10 +1,9 @@
-package com.gdx.tutorials.FLGT.tools;
+package com.gdx.tutorials.FLGT.display;
 
 import com.gdx.tutorials.FLGT.FLGT;
-import com.gdx.tutorials.FLGT.display.FLGTScreen;
 import com.gdx.tutorials.FLGT.display.screen.*;
 
-public abstract class ScreenUtil {
+public abstract class DisplayUtility {
     private static LoadingScreen loadingScreen;
     private static PreferenceScreen preferenceScreen;
     private static MenuScreen menuScreen;

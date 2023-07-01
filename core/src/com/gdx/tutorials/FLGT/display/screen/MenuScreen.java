@@ -13,7 +13,7 @@ import com.gdx.tutorials.FLGT.FLGT;
 import com.gdx.tutorials.FLGT.display.AbstractFLGTScreen;
 import com.gdx.tutorials.FLGT.display.FLGTScreen;
 import com.gdx.tutorials.FLGT.load.FLGTAssets;
-import com.gdx.tutorials.FLGT.tools.ScreenUtil;
+import com.gdx.tutorials.FLGT.display.DisplayUtility;
 
 public class MenuScreen extends AbstractFLGTScreen {
     private Stage stage;
@@ -43,13 +43,13 @@ public class MenuScreen extends AbstractFLGTScreen {
         newGame.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                ScreenUtil.changeScreen(context, FLGTScreen.APPLICATION);
+                DisplayUtility.changeScreen(context, FLGTScreen.APPLICATION);
             }
         });
         preferences.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                ScreenUtil.changeScreen(context, FLGTScreen.PREFERENCE);
+                DisplayUtility.changeScreen(context, FLGTScreen.PREFERENCE);
             }
         });
         exit.addListener(new ChangeListener() {

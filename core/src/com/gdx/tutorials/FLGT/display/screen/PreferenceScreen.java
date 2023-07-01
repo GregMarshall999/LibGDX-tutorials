@@ -8,10 +8,10 @@ import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.gdx.tutorials.FLGT.FLGT;
-import com.gdx.tutorials.FLGT.tools.AppPreferences;
+import com.gdx.tutorials.FLGT.data.AppPreferences;
 import com.gdx.tutorials.FLGT.display.AbstractFLGTScreen;
 import com.gdx.tutorials.FLGT.display.FLGTScreen;
-import com.gdx.tutorials.FLGT.tools.ScreenUtil;
+import com.gdx.tutorials.FLGT.display.DisplayUtility;
 
 public class PreferenceScreen extends AbstractFLGTScreen {
     private Stage stage;
@@ -68,7 +68,7 @@ public class PreferenceScreen extends AbstractFLGTScreen {
         menuReturn.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                ScreenUtil.changeScreen(context, FLGTScreen.MENU);
+                DisplayUtility.changeScreen(context, FLGTScreen.MENU);
             }
         });
     }

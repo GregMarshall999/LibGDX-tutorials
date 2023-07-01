@@ -1,4 +1,4 @@
-package com.gdx.tutorials.FLGT.tools;
+package com.gdx.tutorials.FLGT.data;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;

@@ -3,7 +3,7 @@ package com.gdx.tutorials.FLGT.display.screen;
 import com.gdx.tutorials.FLGT.FLGT;
 import com.gdx.tutorials.FLGT.display.AbstractFLGTScreen;
 import com.gdx.tutorials.FLGT.display.FLGTScreen;
-import com.gdx.tutorials.FLGT.tools.ScreenUtil;
+import com.gdx.tutorials.FLGT.display.DisplayUtility;
 
 public class LoadingScreen extends AbstractFLGTScreen {
     public LoadingScreen(FLGT context) {
@@ -17,7 +17,7 @@ public class LoadingScreen extends AbstractFLGTScreen {
 
     @Override
     public void render(float delta) {
-        ScreenUtil.changeScreen(context, FLGTScreen.MENU);
+        DisplayUtility.changeScreen(context, FLGTScreen.MENU);
     }
 
     @Override
