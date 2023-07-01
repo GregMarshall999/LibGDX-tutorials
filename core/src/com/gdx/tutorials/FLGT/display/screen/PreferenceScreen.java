@@ -12,7 +12,7 @@ import com.gdx.tutorials.FLGT.data.AppPreferences;
 import com.gdx.tutorials.FLGT.display.AbstractFLGTScreen;
 import com.gdx.tutorials.FLGT.display.FLGTScreen;
 import com.gdx.tutorials.FLGT.display.DisplayUtility;
-import com.gdx.tutorials.FLGT.load.FLGTAssets;
+import com.gdx.tutorials.FLGT.loadable.FLGTAssets;
 
 public class PreferenceScreen extends AbstractFLGTScreen {
     private final Stage stage;

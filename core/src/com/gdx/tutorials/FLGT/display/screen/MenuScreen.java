@@ -12,7 +12,7 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.gdx.tutorials.FLGT.FLGT;
 import com.gdx.tutorials.FLGT.display.AbstractFLGTScreen;
 import com.gdx.tutorials.FLGT.display.FLGTScreen;
-import com.gdx.tutorials.FLGT.load.FLGTAssets;
+import com.gdx.tutorials.FLGT.loadable.FLGTAssets;
 import com.gdx.tutorials.FLGT.display.DisplayUtility;
 
 public class MenuScreen extends AbstractFLGTScreen {

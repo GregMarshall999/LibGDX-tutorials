@@ -15,7 +15,7 @@ import com.gdx.tutorials.FLGT.game.body.BodyUserData;
 import com.gdx.tutorials.FLGT.game.body.CollisionListener;
 import com.gdx.tutorials.FLGT.game.body.material.MaterialType;
 import com.gdx.tutorials.FLGT.game.body.type.Static;
-import com.gdx.tutorials.FLGT.load.FLGTAssets;
+import com.gdx.tutorials.FLGT.loadable.FLGTAssets;
 
 public class FLGTWorld {
     private World world;
