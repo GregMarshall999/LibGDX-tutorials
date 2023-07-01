@@ -1,55 +1,52 @@
 package com.gdx.tutorials.FLGT.load;
 
 import com.badlogic.gdx.assets.AssetManager;
-import com.badlogic.gdx.assets.loaders.SkinLoader;
+import com.badlogic.gdx.assets.loaders.SkinLoader.SkinParameter;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
-public class FLGTAssets {
-    private final AssetManager manager = new AssetManager();
+public class FLGTAssets extends AssetManager {
+    public static final String playerImage = "flgt/images/player.png";
+    public static final String enemyImage = "flgt/images/enemy.png";
 
-    public final String playerImage = "flgt/images/player.png";
-    public final String enemyImage = "flgt/images/enemy.png";
+    public static final String music = "flgt/music/gameMusic.mp3";
 
-    public final String boingSound = "flgt/sounds/boing.wav";
-    public final String pingSound = "flgt/sounds/ping.wav";
+    public static final String menuGlassySkin = "flgt/skins/glassy-ui.json";
+    private static final String menuGlassySkinAtlas = "flgt/skins/glassy-ui.atlas";
 
-    public final String music = "flgt/music/music.mp3";
+    public static final String boingSound = "flgt/sounds/boing.wav";
+    public static final String pingSound = "flgt/sounds/ping.wav";
 
-    public final String skin = "flgt/skin/glassy-ui.json";
-
-    public void queueAddImages() {
-        manager.load(playerImage, Texture.class);
-        manager.load(enemyImage, Texture.class);
+    /**
+     * Async assets images file loading
+     */
+    public void queueAddAllImages() {
+        load(playerImage, Texture.class);
+        load(enemyImage, Texture.class);
     }
 
-    public void queueAddSounds() {
-        manager.load(boingSound, Sound.class);
-        manager.load(pingSound, Sound.class);
+    /**
+     * Async assets music file loading
+     */
+    public void queueAddAllMusic() {
+        load(music, Music.class);
     }
 
-    public void queueAddMusic() {
-        manager.load(music, Music.class);
+    /**
+     * Async assets skins file loading
+     */
+    public void queueAddAllSkin() {
+        SkinParameter params = new SkinParameter(menuGlassySkinAtlas);
+        load(menuGlassySkin, Skin.class, params);
     }
 
-    public void queueAddSkin() {
-        String atlasSkin = skin.split("\\.")[0] + ".atlas";
-
-        SkinLoader.SkinParameter params = new SkinLoader.SkinParameter(atlasSkin);
-        manager.load(skin, Skin.class, params);
-    }
-
-    public void finishLoading() {
-        manager.finishLoading();
-    }
-
-    public <T> T get(String assetLocation) {
-        return manager.get(assetLocation);
-    }
-
-    public <T> T get(String assetLocation, Class<T> clazz) {
-        return manager.get(assetLocation, clazz);
+    /**
+     * Async assets sounds file loading
+     */
+    public void queueAddAllSounds() {
+        load(boingSound, Sound.class);
+        load(pingSound, Sound.class);
     }
 }

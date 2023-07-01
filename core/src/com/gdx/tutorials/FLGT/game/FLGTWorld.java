@@ -40,8 +40,8 @@ public class FLGTWorld {
         this.camera = camera;
         this.assets = assets;
 
-        assets.queueAddMusic();
-        assets.queueAddSounds();
+        assets.queueAddAllMusic();
+        assets.queueAddAllSounds();
         assets.finishLoading();
 
         ping = assets.get(assets.pingSound, Sound.class);

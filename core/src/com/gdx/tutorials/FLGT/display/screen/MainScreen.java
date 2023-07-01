@@ -24,7 +24,7 @@ public class MainScreen extends AbstractFLGTScreen {
     public MainScreen(FLGT context) {
         super(context);
 
-        this.context.getAssetManager().queueAddImages();
+        this.context.getAssetManager().queueAddAllImages();
         this.context.getAssetManager().finishLoading();
 
         controller = new PCController();
