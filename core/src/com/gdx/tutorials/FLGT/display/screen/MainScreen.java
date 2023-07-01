@@ -10,6 +10,7 @@ import com.gdx.tutorials.FLGT.control.PCControls;
 import com.gdx.tutorials.FLGT.game.FLGTWorld;
 import com.gdx.tutorials.FLGT.FLGT;
 import com.gdx.tutorials.FLGT.display.AbstractFLGTScreen;
+import com.gdx.tutorials.FLGT.loadable.FLGTAssets;
 
 public class MainScreen extends AbstractFLGTScreen {
     private FLGTWorld world;
@@ -24,18 +25,17 @@ public class MainScreen extends AbstractFLGTScreen {
     public MainScreen(FLGT context) {
         super(context);
 
-        this.applicationContext.assetManager.queueAddAllImages();
-        this.applicationContext.assetManager.finishLoading();
+        assetManager.queueAddAllImages().finishLoading();
 
         controller = new PCControls();
         camera = new OrthographicCamera(32, 24);
-        world = new FLGTWorld(controller, camera, this.applicationContext.assetManager);
+        world = new FLGTWorld(controller, camera, assetManager);
         debugRenderer = new Box2DDebugRenderer(true, true, true, true, true, true);
 
         batch = new SpriteBatch();
         batch.setProjectionMatrix(camera.combined);
 
-        playerTex = context.assetManager.get(context.assetManager.playerImage);
+        playerTex = assetManager.get(FLGTAssets.playerImage);
     }
 
     @Override
