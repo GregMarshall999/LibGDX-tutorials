@@ -16,23 +16,21 @@ import com.gdx.tutorials.FLGT.load.FLGTAssets;
 import com.gdx.tutorials.FLGT.display.DisplayUtility;
 
 public class MenuScreen extends AbstractFLGTScreen {
-    private Stage stage;
-    private Table table;
-    private Skin skin;
+    private final Stage stage;
+    private final Table table;
 
-    private TextButton newGame;
-    private TextButton preferences;
-    private TextButton exit;
+    private final TextButton newGame;
+    private final TextButton preferences;
+    private final TextButton exit;
 
     public MenuScreen(FLGT context) {
         super(context);
 
-        this.applicationContext.assetManager.queueAddAllSkins();
-        this.applicationContext.assetManager.finishLoading();
+        assetManager.queueAddAllSkins().finishLoading();
+        Skin skin = assetManager.get(FLGTAssets.menuGlassySkin);
 
         stage = new Stage(new ScreenViewport());
         table = new Table();
-        skin = this.applicationContext.assetManager.get(new FLGTAssets().menuGlassySkin);
 
         //buttons init
         newGame = new TextButton("New Game", skin);
