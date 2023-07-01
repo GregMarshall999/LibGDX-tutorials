@@ -1,18 +1,12 @@
 package com.gdx.tutorials.FLGT.display;
 
 public enum FLGTScreen {
-    MENU(0),
-    PREFERENCE(1),
-    APPLICATION(2),
-    ENDGAME(3);
+    MENU,
+    PREFERENCE,
+    APPLICATION,
+    ENDGAME;
 
-    private final int id;
+    FLGTScreen() {
 
-    FLGTScreen(int id) {
-        this.id = id;
-    }
-
-    public int getId() {
-        return id;
     }
 }

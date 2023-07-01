@@ -7,6 +7,7 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
+//todo prevent reloading loaded assets
 public class FLGTAssets extends AssetManager {
     public static final String playerImage = "flgt/images/player.png";
     public static final String enemyImage = "flgt/images/enemy.png";
@@ -21,32 +22,40 @@ public class FLGTAssets extends AssetManager {
 
     /**
      * Async assets images file loading
+     * @return assets instance
      */
-    public void queueAddAllImages() {
+    public FLGTAssets queueAddAllImages() {
         load(playerImage, Texture.class);
         load(enemyImage, Texture.class);
+        return this;
     }
 
     /**
      * Async assets music file loading
+     * @return assets instance
      */
-    public void queueAddAllMusic() {
+    public FLGTAssets queueAddAllMusic() {
         load(music, Music.class);
+        return this;
     }
 
     /**
      * Async assets skins file loading
+     * @return assets instance
      */
-    public void queueAddAllSkin() {
+    public FLGTAssets queueAddAllSkins() {
         SkinParameter params = new SkinParameter(menuGlassySkinAtlas);
         load(menuGlassySkin, Skin.class, params);
+        return this;
     }
 
     /**
      * Async assets sounds file loading
+     * @return assets instance
      */
-    public void queueAddAllSounds() {
+    public FLGTAssets queueAddAllSounds() {
         load(boingSound, Sound.class);
         load(pingSound, Sound.class);
+        return this;
     }
 }

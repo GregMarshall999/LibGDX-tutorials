@@ -24,12 +24,12 @@ public class MainScreen extends AbstractFLGTScreen {
     public MainScreen(FLGT context) {
         super(context);
 
-        this.context.assetManager.queueAddAllImages();
-        this.context.assetManager.finishLoading();
+        this.applicationContext.assetManager.queueAddAllImages();
+        this.applicationContext.assetManager.finishLoading();
 
         controller = new PCControls();
         camera = new OrthographicCamera(32, 24);
-        world = new FLGTWorld(controller, camera, this.context.assetManager);
+        world = new FLGTWorld(controller, camera, this.applicationContext.assetManager);
         debugRenderer = new Box2DDebugRenderer(true, true, true, true, true, true);
 
         batch = new SpriteBatch();

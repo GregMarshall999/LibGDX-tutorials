@@ -9,7 +9,7 @@ public class FLGT extends Game {
 
     @Override
     public void create() {
-        DisplayUtility.initLoading(this);
+        DisplayUtility.initStartup(this);
     }
 
     @Override

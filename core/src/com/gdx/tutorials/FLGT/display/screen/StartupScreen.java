@@ -5,9 +5,9 @@ import com.gdx.tutorials.FLGT.display.AbstractFLGTScreen;
 import com.gdx.tutorials.FLGT.display.FLGTScreen;
 import com.gdx.tutorials.FLGT.display.DisplayUtility;
 
-public class LoadingScreen extends AbstractFLGTScreen {
-    public LoadingScreen(FLGT context) {
-        super(context);
+public class StartupScreen extends AbstractFLGTScreen {
+    public StartupScreen(FLGT applicationContext) {
+        super(applicationContext);
     }
 
     @Override
@@ -17,7 +17,7 @@ public class LoadingScreen extends AbstractFLGTScreen {
 
     @Override
     public void render(float delta) {
-        DisplayUtility.changeScreen(context, FLGTScreen.MENU);
+        DisplayUtility.changeScreen(applicationContext, FLGTScreen.MENU);
     }
 
     @Override

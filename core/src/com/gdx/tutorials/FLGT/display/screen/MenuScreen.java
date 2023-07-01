@@ -27,12 +27,12 @@ public class MenuScreen extends AbstractFLGTScreen {
     public MenuScreen(FLGT context) {
         super(context);
 
-        this.context.assetManager.queueAddAllSkin();
-        this.context.assetManager.finishLoading();
+        this.applicationContext.assetManager.queueAddAllSkins();
+        this.applicationContext.assetManager.finishLoading();
 
         stage = new Stage(new ScreenViewport());
         table = new Table();
-        skin = this.context.assetManager.get(new FLGTAssets().menuGlassySkin);
+        skin = this.applicationContext.assetManager.get(new FLGTAssets().menuGlassySkin);
 
         //buttons init
         newGame = new TextButton("New Game", skin);

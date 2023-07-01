@@ -2,11 +2,14 @@ package com.gdx.tutorials.FLGT.display;
 
 import com.badlogic.gdx.Screen;
 import com.gdx.tutorials.FLGT.FLGT;
+import com.gdx.tutorials.FLGT.load.FLGTAssets;
 
 public abstract class AbstractFLGTScreen implements Screen {
-    protected FLGT context;
+    protected FLGT applicationContext;
+    protected final FLGTAssets assetManager;
 
-    public AbstractFLGTScreen(FLGT context) {
-        this.context = context;
+    public AbstractFLGTScreen(FLGT applicationContext) {
+        this.applicationContext = applicationContext;
+        assetManager = this.applicationContext.assetManager;
     }
 }

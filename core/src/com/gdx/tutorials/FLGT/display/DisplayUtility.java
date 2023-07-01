@@ -4,7 +4,6 @@ import com.gdx.tutorials.FLGT.FLGT;
 import com.gdx.tutorials.FLGT.display.screen.*;
 
 public abstract class DisplayUtility {
-    private static LoadingScreen loadingScreen;
     private static PreferenceScreen preferenceScreen;
     private static MenuScreen menuScreen;
     private static MainScreen mainScreen;
@@ -41,11 +40,10 @@ public abstract class DisplayUtility {
     }
 
     /**
-     * Prepares loading screen for the given application context
+     * Prepares startup screen for the given application context
      * @param context Application context
      */
-    public static void initLoading(FLGT context) {
-        loadingScreen = new LoadingScreen(context);
-        context.setScreen(loadingScreen);
+    public static void initStartup(FLGT context) {
+        context.setScreen(new StartupScreen(context));
     }
 }
