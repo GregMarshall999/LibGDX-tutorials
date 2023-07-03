@@ -2,12 +2,15 @@ package com.gdx.tutorials.FLGT.display.screen;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.scenes.scene2d.utils.TiledDrawable;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.gdx.tutorials.FLGT.FLGT;
 import com.gdx.tutorials.FLGT.display.AbstractFLGTScreen;
@@ -28,9 +31,12 @@ public class MenuScreen extends AbstractFLGTScreen {
 
         assetManager.queueAddAllSkins().finishLoading();
         Skin skin = assetManager.get(FLGTAssets.menuGlassySkin);
+        TextureAtlas atlas = assetManager.get(FLGTAssets.loadingImages);
+        TextureRegion background = atlas.findRegion("flamebackground");
 
         stage = new Stage(new ScreenViewport());
         table = new Table();
+        table.setBackground(new TiledDrawable(background));
 
         //buttons init
         newGame = new TextButton("New Game", skin);
