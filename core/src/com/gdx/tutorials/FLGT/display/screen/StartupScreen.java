@@ -6,11 +6,17 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.utils.Align;
+import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.gdx.tutorials.FLGT.FLGT;
 import com.gdx.tutorials.FLGT.display.AbstractFLGTScreen;
 import com.gdx.tutorials.FLGT.display.FLGTScreen;
 import com.gdx.tutorials.FLGT.display.DisplayUtility;
 import com.gdx.tutorials.FLGT.assets.FLGTAssets;
+import com.gdx.tutorials.FLGT.display.loading.LoadingBar;
 
 public class StartupScreen extends AbstractFLGTScreen {
     private final int IMAGE = 0;
@@ -21,10 +27,14 @@ public class StartupScreen extends AbstractFLGTScreen {
     private final int MUSIC = 5;
 
     private final SpriteBatch spriteBatch;
+    private final Stage stage;
 
     private TextureRegion title;
     private TextureRegion dash;
     private Animation<TextureRegion> flameAnimation;
+    private Image titleImage;
+    private Table table;
+    private Table loadingTable;
 
     private int currentLoadingStage = 0;
     private float countDown = 5f;
@@ -33,20 +43,31 @@ public class StartupScreen extends AbstractFLGTScreen {
     public StartupScreen(FLGT applicationContext) {
         super(applicationContext);
 
+        stage = new Stage(new ScreenViewport());
+
+        loadAssets();
+
         spriteBatch = new SpriteBatch();
         spriteBatch.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE);
-
-        assetManager.queueAddAllLoadingImages().finishLoading();
     }
 
     @Override
     public void show() {
-        TextureAtlas atlas = assetManager.get(FLGTAssets.loadingImages);
+        titleImage = new Image(title);
+        table = new Table();
+        loadingTable = new Table();
 
-        title = atlas.findRegion("staying-alight-logo");
-        dash = atlas.findRegion("loading-dash");
+        table.setFillParent(true);
+        table.setDebug(true);
 
-        flameAnimation = new Animation<>(0.07f, atlas.findRegions("flames/flames"), Animation.PlayMode.LOOP);
+        for (int i = 0; i < 12; i++)
+            loadingTable.add(new LoadingBar(dash, flameAnimation));
+
+        table.add(titleImage).align(Align.center).pad(10, 0, 0, 0).colspan(10);
+        table.row();
+        table.add(loadingTable).width(400);
+
+        stage.addActor(table);
     }
 
     @Override
@@ -55,15 +76,12 @@ public class StartupScreen extends AbstractFLGTScreen {
         Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        stateTime += delta;
-        TextureRegion currentFrame = flameAnimation.getKeyFrame(stateTime, true);
-
-        spriteBatch.begin();
-        spriteBatch.draw(title, 135, 250);
-        drawLoadingBar(currentLoadingStage * 2, currentFrame);
-        spriteBatch.end();
-
         if(assetManager.update()) {
+            if(currentLoadingStage <= 6) {
+                loadingTable.getCells().get((currentLoadingStage-1)*2).getActor().setVisible(true);
+                loadingTable.getCells().get((currentLoadingStage-1)*2+1).getActor().setVisible(true);
+            }
+
             switch (currentLoadingStage) {
                 case IMAGE -> {
                     assetManager.queueAddAllGameImages();
@@ -102,6 +120,9 @@ public class StartupScreen extends AbstractFLGTScreen {
                 }
             }
         }
+
+        stage.act();
+        stage.draw();
     }
 
     @Override
@@ -127,6 +148,7 @@ public class StartupScreen extends AbstractFLGTScreen {
     @Override
     public void dispose() {
         spriteBatch.dispose();
+        stage.dispose();
     }
 
     private void drawLoadingBar(int stage, TextureRegion currentFrame) {
@@ -134,5 +156,15 @@ public class StartupScreen extends AbstractFLGTScreen {
             spriteBatch.draw(currentFrame, 50 + (i*50), 150, 50, 50);
             spriteBatch.draw(dash, 35 + (i*50), 140, 80, 80);
         }
+    }
+
+    private void loadAssets() {
+        assetManager.queueAddAllLoadingImages().finishLoading();
+        System.out.println("Loading images complete");
+
+        TextureAtlas atlas = assetManager.get(FLGTAssets.loadingImages);
+        title = atlas.findRegion("staying-alight-logo");
+        dash = atlas.findRegion("loading-dash");
+        flameAnimation = new Animation<>(0.07f, atlas.findRegions("flames/flames"), Animation.PlayMode.LOOP);
     }
 }
