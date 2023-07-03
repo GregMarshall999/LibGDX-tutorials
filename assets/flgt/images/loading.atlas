@@ -1,136 +1,131 @@
 
 loading.png
 format: RGBA8888
-filter: MipMapLinearLinear,MipMapLinearLinear
+filter: Nearest,Nearest
 repeat: none
+flame11
+  rotate: false
+  xy: 1, 697
+  size: 216, 217
+  orig: 216, 217
+  offset: 0, 0
+  index: -1
+flame13
+  rotate: false
+  xy: 1, 489
+  size: 214, 206
+  orig: 214, 206
+  offset: 0, 0
+  index: -1
+flame03
+  rotate: false
+  xy: 219, 714
+  size: 207, 200
+  orig: 207, 200
+  offset: 0, 0
+  index: -1
+flame02
+  rotate: false
+  xy: 1, 282
+  size: 200, 205
+  orig: 200, 205
+  offset: 0, 0
+  index: -1
 staying-alight-logo
   rotate: false
-  xy: 1, 4
-  size: 359, 108
-  orig: 359, 108
+  xy: 428, 836
+  size: 327, 78
+  orig: 327, 78
+  offset: 0, 0
+  index: -1
+flame07
+  rotate: false
+  xy: 1, 73
+  size: 189, 207
+  orig: 189, 207
+  offset: 0, 0
+  index: -1
+flame05
+  rotate: false
+  xy: 428, 644
+  size: 207, 190
+  orig: 207, 190
+  offset: 0, 0
+  index: -1
+flame04
+  rotate: false
+  xy: 637, 637
+  size: 194, 197
+  orig: 194, 197
+  offset: 0, 0
+  index: -1
+flame01
+  rotate: false
+  xy: 833, 730
+  size: 190, 184
+  orig: 190, 184
+  offset: 0, 0
+  index: -1
+flame12
+  rotate: false
+  xy: 833, 534
+  size: 188, 194
+  orig: 188, 194
+  offset: 0, 0
+  index: -1
+flame14
+  rotate: false
+  xy: 203, 277
+  size: 185, 210
+  orig: 185, 210
+  offset: 0, 0
+  index: -1
+flame06
+  rotate: false
+  xy: 192, 78
+  size: 197, 197
+  orig: 197, 197
   offset: 0, 0
   index: -1
 copyright
   rotate: false
-  xy: 362, 67
-  size: 182, 45
-  orig: 182, 45
+  xy: 1, 37
+  size: 173, 34
+  orig: 173, 34
+  offset: 0, 0
+  index: -1
+flame08
+  rotate: false
+  xy: 217, 491
+  size: 181, 204
+  orig: 181, 204
+  offset: 0, 0
+  index: -1
+flame09
+  rotate: false
+  xy: 400, 453
+  size: 184, 189
+  orig: 184, 189
+  offset: 0, 0
+  index: -1
+flame10
+  rotate: false
+  xy: 586, 449
+  size: 184, 186
+  orig: 184, 186
   offset: 0, 0
   index: -1
 flamebackground
   rotate: false
-  xy: 362, 1
-  size: 64, 64
-  orig: 64, 64
+  xy: 757, 848
+  size: 66, 66
+  orig: 66, 66
   offset: 0, 0
   index: -1
 loading-dash
   rotate: false
-  xy: 546, 80
-  size: 39, 32
-  orig: 39, 32
+  xy: 1, 1
+  size: 41, 34
+  orig: 41, 34
   offset: 0, 0
   index: -1
-
-loading2.png
-format: RGBA8888
-filter: MipMapLinearLinear,MipMapLinearLinear
-repeat: none
-flames/flames
-  rotate: false
-  xy: 1, 809
-  size: 200, 200
-  orig: 200, 200
-  offset: 0, 0
-  index: 1
-flames/flames
-  rotate: false
-  xy: 1, 607
-  size: 200, 200
-  orig: 200, 200
-  offset: 0, 0
-  index: 2
-flames/flames
-  rotate: false
-  xy: 203, 809
-  size: 200, 200
-  orig: 200, 200
-  offset: 0, 0
-  index: 3
-flames/flames
-  rotate: false
-  xy: 1, 405
-  size: 200, 200
-  orig: 200, 200
-  offset: 0, 0
-  index: 4
-flames/flames
-  rotate: false
-  xy: 203, 607
-  size: 200, 200
-  orig: 200, 200
-  offset: 0, 0
-  index: 5
-flames/flames
-  rotate: false
-  xy: 405, 809
-  size: 200, 200
-  orig: 200, 200
-  offset: 0, 0
-  index: 6
-flames/flames
-  rotate: false
-  xy: 1, 203
-  size: 200, 200
-  orig: 200, 200
-  offset: 0, 0
-  index: 7
-flames/flames
-  rotate: false
-  xy: 203, 405
-  size: 200, 200
-  orig: 200, 200
-  offset: 0, 0
-  index: 8
-flames/flames
-  rotate: false
-  xy: 405, 607
-  size: 200, 200
-  orig: 200, 200
-  offset: 0, 0
-  index: 9
-flames/flames
-  rotate: false
-  xy: 607, 809
-  size: 200, 200
-  orig: 200, 200
-  offset: 0, 0
-  index: 10
-flames/flames
-  rotate: false
-  xy: 1, 1
-  size: 200, 200
-  orig: 200, 200
-  offset: 0, 0
-  index: 11
-flames/flames
-  rotate: false
-  xy: 203, 203
-  size: 200, 200
-  orig: 200, 200
-  offset: 0, 0
-  index: 12
-flames/flames
-  rotate: false
-  xy: 405, 405
-  size: 200, 200
-  orig: 200, 200
-  offset: 0, 0
-  index: 13
-flames/flames
-  rotate: false
-  xy: 607, 607
-  size: 200, 200
-  orig: 200, 200
-  offset: 0, 0
-  index: 15
