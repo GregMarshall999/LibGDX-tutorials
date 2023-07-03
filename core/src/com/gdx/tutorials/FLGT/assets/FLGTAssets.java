@@ -1,4 +1,4 @@
-package com.gdx.tutorials.FLGT.loadable;
+package com.gdx.tutorials.FLGT.assets;
 
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.loaders.SkinLoader.SkinParameter;

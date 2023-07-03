@@ -5,13 +5,12 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.gdx.tutorials.FLGT.FLGT;
 import com.gdx.tutorials.FLGT.display.AbstractFLGTScreen;
 import com.gdx.tutorials.FLGT.display.FLGTScreen;
 import com.gdx.tutorials.FLGT.display.DisplayUtility;
-import com.gdx.tutorials.FLGT.loadable.FLGTAssets;
+import com.gdx.tutorials.FLGT.assets.FLGTAssets;
 
 public class StartupScreen extends AbstractFLGTScreen {
     private final int IMAGE = 0;
