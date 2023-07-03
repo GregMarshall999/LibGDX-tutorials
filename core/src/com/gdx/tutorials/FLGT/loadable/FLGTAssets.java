@@ -4,13 +4,13 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.loaders.SkinLoader.SkinParameter;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
-import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
 //todo prevent reloading loaded assets
 public class FLGTAssets extends AssetManager {
-    public static final String playerImage = "flgt/images/player.png";
-    public static final String enemyImage = "flgt/images/enemy.png";
+    public static final String gameImages = "flgt/images/game.atlas";
+    public static final String loadingImages = "flgt/images/loading.atlas";
 
     public static final String music = "flgt/music/gameMusic.mp3";
 
@@ -21,12 +21,36 @@ public class FLGTAssets extends AssetManager {
     public static final String pingSound = "flgt/sounds/ping.wav";
 
     /**
-     * Async assets images file loading
+     * Async assets game images file loading
      * @return assets instance
      */
-    public FLGTAssets queueAddAllImages() {
-        load(playerImage, Texture.class);
-        load(enemyImage, Texture.class);
+    public FLGTAssets queueAddAllGameImages() {
+        load(gameImages, TextureAtlas.class);
+        return this;
+    }
+
+    /**
+     * Async assets loading images file loading
+     * @return assets instance
+     */
+    public FLGTAssets queueAddAllLoadingImages() {
+        load(loadingImages, TextureAtlas.class);
+        return this;
+    }
+
+    /**
+     * Async assets fonts file loading
+     * @return assets instance
+     */
+    public FLGTAssets queueAddAllFonts() {
+        return this;
+    }
+
+    /**
+     * Async assets particles file loading
+     * @return assets instance
+     */
+    public FLGTAssets queueAddAllParticles() {
         return this;
     }
 
