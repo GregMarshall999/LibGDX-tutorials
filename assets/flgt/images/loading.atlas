@@ -3,34 +3,34 @@ loading.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-flame11
+flame
   rotate: false
   xy: 1, 697
   size: 216, 217
   orig: 216, 217
   offset: 0, 0
-  index: -1
-flame13
+  index: 11
+flame
   rotate: false
   xy: 1, 489
   size: 214, 206
   orig: 214, 206
   offset: 0, 0
-  index: -1
-flame03
+  index: 13
+flame
   rotate: false
   xy: 219, 714
   size: 207, 200
   orig: 207, 200
   offset: 0, 0
-  index: -1
-flame02
+  index: 3
+flame
   rotate: false
   xy: 1, 282
   size: 200, 205
   orig: 200, 205
   offset: 0, 0
-  index: -1
+  index: 2
 staying-alight-logo
   rotate: false
   xy: 428, 836
@@ -38,55 +38,55 @@ staying-alight-logo
   orig: 327, 78
   offset: 0, 0
   index: -1
-flame07
+flame
   rotate: false
   xy: 1, 73
   size: 189, 207
   orig: 189, 207
   offset: 0, 0
-  index: -1
-flame05
+  index: 7
+flame
   rotate: false
   xy: 428, 644
   size: 207, 190
   orig: 207, 190
   offset: 0, 0
-  index: -1
-flame04
+  index: 5
+flame
   rotate: false
   xy: 637, 637
   size: 194, 197
   orig: 194, 197
   offset: 0, 0
-  index: -1
-flame01
+  index: 4
+flame
   rotate: false
   xy: 833, 730
   size: 190, 184
   orig: 190, 184
   offset: 0, 0
-  index: -1
-flame12
+  index: 1
+flame
   rotate: false
   xy: 833, 534
   size: 188, 194
   orig: 188, 194
   offset: 0, 0
-  index: -1
-flame14
+  index: 12
+flame
   rotate: false
   xy: 203, 277
   size: 185, 210
   orig: 185, 210
   offset: 0, 0
-  index: -1
-flame06
+  index: 14
+flame
   rotate: false
   xy: 192, 78
   size: 197, 197
   orig: 197, 197
   offset: 0, 0
-  index: -1
+  index: 6
 copyright
   rotate: false
   xy: 1, 37
@@ -94,27 +94,27 @@ copyright
   orig: 173, 34
   offset: 0, 0
   index: -1
-flame08
+flame
   rotate: false
   xy: 217, 491
   size: 181, 204
   orig: 181, 204
   offset: 0, 0
-  index: -1
-flame09
+  index: 8
+flame
   rotate: false
   xy: 400, 453
   size: 184, 189
   orig: 184, 189
   offset: 0, 0
-  index: -1
-flame10
+  index: 9
+flame
   rotate: false
   xy: 586, 449
   size: 184, 186
   orig: 184, 186
   offset: 0, 0
-  index: -1
+  index: 10
 flamebackground
   rotate: false
   xy: 757, 848

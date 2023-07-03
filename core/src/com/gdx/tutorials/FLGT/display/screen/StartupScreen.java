@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.utils.TiledDrawable;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.gdx.tutorials.FLGT.FLGT;
@@ -29,15 +30,15 @@ public class StartupScreen extends AbstractFLGTScreen {
     private final SpriteBatch spriteBatch;
     private final Stage stage;
 
+    private TextureRegion background;
+    private TextureRegion copyRight;
     private TextureRegion title;
     private TextureRegion dash;
     private Animation<TextureRegion> flameAnimation;
-    private Image titleImage;
-    private Table table;
     private Table loadingTable;
 
     private int currentLoadingStage = 0;
-    private float countDown = 5f;
+    private float countDown = 2.5f;
     private float stateTime = 0f;
 
     public StartupScreen(FLGT applicationContext) {
@@ -53,12 +54,14 @@ public class StartupScreen extends AbstractFLGTScreen {
 
     @Override
     public void show() {
-        titleImage = new Image(title);
-        table = new Table();
+        Image titleImage = new Image(title);
+        Image copyRightImage = new Image(copyRight);
+        Table table = new Table();
         loadingTable = new Table();
 
         table.setFillParent(true);
-        table.setDebug(true);
+        //table.setDebug(true);
+        table.setBackground(new TiledDrawable(background));
 
         for (int i = 0; i < 12; i++)
             loadingTable.add(new LoadingBar(dash, flameAnimation));
@@ -66,6 +69,8 @@ public class StartupScreen extends AbstractFLGTScreen {
         table.add(titleImage).align(Align.center).pad(10, 0, 0, 0).colspan(10);
         table.row();
         table.add(loadingTable).width(400);
+        table.row();
+        table.add(copyRightImage).align(Align.center).pad(200, 0, 0, 0).colspan(10);
 
         stage.addActor(table);
     }
@@ -77,9 +82,9 @@ public class StartupScreen extends AbstractFLGTScreen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         if(assetManager.update()) {
-            if(currentLoadingStage <= 6) {
-                loadingTable.getCells().get((currentLoadingStage-1)*2).getActor().setVisible(true);
-                loadingTable.getCells().get((currentLoadingStage-1)*2+1).getActor().setVisible(true);
+            if(currentLoadingStage < 6) {
+                loadingTable.getCells().get((currentLoadingStage)*2).getActor().setVisible(true);
+                loadingTable.getCells().get((currentLoadingStage)*2+1).getActor().setVisible(true);
             }
 
             switch (currentLoadingStage) {
@@ -160,11 +165,13 @@ public class StartupScreen extends AbstractFLGTScreen {
 
     private void loadAssets() {
         assetManager.queueAddAllLoadingImages().finishLoading();
-        System.out.println("Loading images complete");
+        System.out.println("Startup images load complete");
 
         TextureAtlas atlas = assetManager.get(FLGTAssets.loadingImages);
+        background = atlas.findRegion("flamebackground");
+        copyRight = atlas.findRegion("copyright");
         title = atlas.findRegion("staying-alight-logo");
         dash = atlas.findRegion("loading-dash");
-        flameAnimation = new Animation<>(0.07f, atlas.findRegions("flames/flames"), Animation.PlayMode.LOOP);
+        flameAnimation = new Animation<>(0.07f, atlas.findRegions("flame"), Animation.PlayMode.LOOP);
     }
 }
