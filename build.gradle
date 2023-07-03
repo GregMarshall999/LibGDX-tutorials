@@ -51,6 +51,7 @@ project(":desktop") {
         api "com.badlogicgames.gdx:gdx-box2d-platform:$gdxVersion:natives-desktop"
         api "de.golfgl.gdxgamesvcs:gdx-gamesvcs-core-gamejolt:1.1.0"
         api "de.tomgrill.gdxdialogs:gdx-dialogs-desktop:1.3.0"
+        api "com.badlogicgames.ashley:ashley:$ashleyVersion"
 
     }
 }
@@ -73,6 +74,7 @@ project(":core") {
         api "com.github.tommyettinger:jbump:1.0.1"
         api "de.golfgl.gdxgamesvcs:gdx-gamesvcs-core:1.1.0"
         api "de.tomgrill.gdxdialogs:gdx-dialogs-core:1.3.0"
+        api "com.badlogicgames.ashley:ashley:$ashleyVersion"
 
     }
 }
