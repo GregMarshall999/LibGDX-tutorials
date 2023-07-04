@@ -5,8 +5,4 @@ public enum FLGTScreen {
     PREFERENCE,
     APPLICATION,
     ENDGAME;
-
-    FLGTScreen() {
-
-    }
 }

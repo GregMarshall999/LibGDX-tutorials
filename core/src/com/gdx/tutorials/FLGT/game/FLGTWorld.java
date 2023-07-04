@@ -8,7 +8,6 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.World;
-import com.gdx.tutorials.FLGT.control.ControllerUtility;
 import com.gdx.tutorials.FLGT.control.PCControls;
 import com.gdx.tutorials.FLGT.game.body.BodyFactory;
 import com.gdx.tutorials.FLGT.game.body.BodyUserData;
@@ -69,16 +68,16 @@ public class FLGTWorld {
     }
 
     public void logicStep(float delta) {
-        if(ControllerUtility.mouse1Down && pointIntersectsBody(player, ControllerUtility.mouseLocation))
+        if(PCControls.mouse1Down && pointIntersectsBody(player, PCControls.mouseLocation))
             System.out.println("Player was clicked");
 
-        if(ControllerUtility.left)
+        if(PCControls.left)
             player.applyForceToCenter(-10, 0, true);
-        else if(ControllerUtility.right)
+        else if(PCControls.right)
             player.applyForceToCenter(10, 0, true);
-        else if(ControllerUtility.up)
+        else if(PCControls.up)
             player.applyForceToCenter(0, 10, true);
-        else if(ControllerUtility.down)
+        else if(PCControls.down)
             player.applyForceToCenter(0, -10, true);
 
         if(isSwimming)
