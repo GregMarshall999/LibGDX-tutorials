@@ -3,6 +3,7 @@ package com.gdx.tutorials.FLGT.display.screen;
 import com.badlogic.ashley.core.PooledEngine;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -14,7 +15,7 @@ import com.gdx.tutorials.FLGT.display.AbstractFLGTScreen;
 import com.gdx.tutorials.FLGT.assets.FLGTAssets;
 import com.gdx.tutorials.FLGT.game.EntityFactory;
 import com.gdx.tutorials.FLGT.game.body.BodyFactory;
-import com.gdx.tutorials.FLGT.game.body.FLGTContactListener;
+import com.gdx.tutorials.FLGT.game.FLGTContactListener;
 import com.gdx.tutorials.FLGT.systems.*;
 
 public class MainScreen extends AbstractFLGTScreen {
@@ -73,7 +74,10 @@ public class MainScreen extends AbstractFLGTScreen {
 
     @Override
     public void render(float delta) {
+        Gdx.gl.glClearColor(0f, 0f, 0f, 1);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
+        engine.update(delta);
     }
 
     @Override
