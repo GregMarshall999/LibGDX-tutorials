@@ -1,8 +1,9 @@
 package com.gdx.tutorials.FLGT.components;
 
 import com.badlogic.ashley.core.Component;
+import com.badlogic.gdx.utils.Pool.Poolable;
 
-public class StateComponent implements Component {
+public class StateComponent implements Component, Poolable {
     public static final int STATE_NORMAL = 0;
     public static final int STATE_JUMPING = 1;
     public static final int STATE_FALLING = 2;
@@ -13,6 +14,11 @@ public class StateComponent implements Component {
 
     public float time = 0.0f;
     public boolean isLooping = false;
+
+    @Override
+    public void reset() {
+
+    }
 
     public void set(int newState){
         state = newState;

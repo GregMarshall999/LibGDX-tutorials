@@ -21,7 +21,7 @@ public abstract class EntityFactory {
         TypeComponent type = engine.createComponent(TypeComponent.class);
         StateComponent state = engine.createComponent(StateComponent.class);
 
-        bodyFactory.makeCirclePolyBody(10, 10, 1, MaterialType.STONE, DynamicBody, true);
+        body.body = bodyFactory.makeCirclePolyBody(10, 10, 1, MaterialType.STONE, DynamicBody, true);
         position.position.set(10, 10, 0);
         texture.region = atlas.findRegion("player");
         type.type = TypeComponent.PLAYER;
