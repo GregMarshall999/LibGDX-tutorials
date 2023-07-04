@@ -11,7 +11,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.gdx.tutorials.FLGT.control.PCControls;
 import com.gdx.tutorials.FLGT.game.body.BodyFactory;
 import com.gdx.tutorials.FLGT.game.body.BodyUserData;
-import com.gdx.tutorials.FLGT.game.body.CollisionListener;
+import com.gdx.tutorials.FLGT.game.body.FLGTContactListener;
 import com.gdx.tutorials.FLGT.game.body.material.MaterialType;
 import com.gdx.tutorials.FLGT.game.body.type.Static;
 import com.gdx.tutorials.FLGT.assets.FLGTAssets;
@@ -51,7 +51,7 @@ public class FLGTWorld {
         music.play();
 
         world = new World(new Vector2(0, -10f), true);
-        world.setContactListener(new CollisionListener(this));
+        world.setContactListener(new FLGTContactListener(this));
         bodyFactory = BodyFactory.getInstance(world);
 
         floor = new Static(world);

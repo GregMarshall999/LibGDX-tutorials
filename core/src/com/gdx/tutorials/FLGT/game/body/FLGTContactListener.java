@@ -5,11 +5,10 @@ import com.badlogic.gdx.physics.box2d.*;
 import com.gdx.tutorials.FLGT.game.FLGTSound;
 import com.gdx.tutorials.FLGT.game.FLGTWorld;
 
-public class CollisionListener implements ContactListener {
+public class FLGTContactListener implements ContactListener {
     private FLGTWorld parentWorld;
 
-    public CollisionListener(FLGTWorld parentWorld) {
-        this.parentWorld = parentWorld;
+    public FLGTContactListener() {
     }
 
     @Override
