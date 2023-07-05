@@ -1,5 +1,6 @@
 package com.gdx.tutorials.FLGT.display.screen;
 
+import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.PooledEngine;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
@@ -7,9 +8,11 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.gdx.tutorials.FLGT.control.PCControls;
 import com.gdx.tutorials.FLGT.FLGT;
 import com.gdx.tutorials.FLGT.display.AbstractFLGTScreen;
+import com.gdx.tutorials.FLGT.engine.Utils;
 import com.gdx.tutorials.FLGT.engine.systems.*;
 import com.gdx.tutorials.FLGT.game.FLGTAssets;
 import com.gdx.tutorials.FLGT.game.factory.LevelFactory;
@@ -20,6 +23,7 @@ public class MainScreen extends AbstractFLGTScreen {
     private SpriteBatch batch;
     private PooledEngine engine;
     private LevelFactory levelFactory;
+    private Entity player;
 
     private Sound ping;
     private Sound boing;
@@ -42,16 +46,32 @@ public class MainScreen extends AbstractFLGTScreen {
         camera = renderingSystem.getCamera();
         batch.setProjectionMatrix(camera.combined);
 
+        player = levelFactory.createPlayer(atlas.findRegion("player"), camera);
+
         engine.addSystem(new AnimationSystem());
         engine.addSystem(new PhysicsSystem(levelFactory.world));
         engine.addSystem(renderingSystem);
         engine.addSystem(new PhysicsDebugSystem(levelFactory.world, renderingSystem.getCamera()));
         engine.addSystem(new CollisionSystem());
         engine.addSystem(new PlayerControlSystem(controller));
+        engine.addSystem(new WallSystem(player));
+        engine.addSystem(new WaterFloorSystem(player));
         engine.addSystem(new LevelGenerationSystem(levelFactory));
 
-        levelFactory.createPlayer(atlas.findRegion("player"), camera);
-        levelFactory.createFloor(atlas.findRegion("player"));
+        int floorWidth = (int) (40*RenderingSystem.PPM);
+        int floorHeight = (int) (1*RenderingSystem.PPM);
+        TextureRegion floorRegion = Utils.makeTextureRegion(floorWidth, floorHeight, "11331180");
+        levelFactory.createFloor(floorRegion);
+
+        int wFloorWidth = (int) (40*RenderingSystem.PPM);
+        int wFloorHeight = (int) (10*RenderingSystem.PPM);
+        TextureRegion wFloorRegion = Utils.makeTextureRegion(wFloorWidth, wFloorHeight, "11113380");
+        levelFactory.createWaterFloor(wFloorRegion);
+
+        int wallWidth = (int) (1*RenderingSystem.PPM);
+        int wallHeight = (int) (60*RenderingSystem.PPM);
+        TextureRegion wallRegion = Utils.makeTextureRegion(wallWidth, wallHeight, "222222FF");
+        levelFactory.createWalls(wallRegion);
     }
 
     @Override

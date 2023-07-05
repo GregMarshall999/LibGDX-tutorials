@@ -31,7 +31,12 @@ public class CollisionSystem extends IteratingSystem {
             TypeComponent type = collidedEntity.getComponent(TypeComponent.class);
             if(type != null) {
                 switch (type.type) {
-                    case ENEMY -> playerMapper.get(entity).isDead = true;
+                    case ENEMY -> {
+                        PlayerComponent player = playerMapper.get(entity);
+                        player.isDead = true;
+                        int score = (int) player.camera.position.y;
+                        System.out.println("Score = " + score);
+                    }
                     case SCENERY -> playerMapper.get(entity).onPlatform = true;
                     case SPRING -> playerMapper.get(entity).onSpring = true;
                     case OTHER -> System.out.println("Player hit other");

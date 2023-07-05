@@ -11,8 +11,7 @@ import com.gdx.tutorials.FLGT.engine.noise.SimplexNoise;
 import com.gdx.tutorials.FLGT.game.FLGTContactListener;
 import com.gdx.tutorials.FLGT.game.body.BodyFactory;
 
-import static com.badlogic.gdx.physics.box2d.BodyDef.BodyType.DynamicBody;
-import static com.badlogic.gdx.physics.box2d.BodyDef.BodyType.StaticBody;
+import static com.badlogic.gdx.physics.box2d.BodyDef.BodyType.*;
 import static com.gdx.tutorials.FLGT.game.body.material.MaterialType.STONE;
 
 public class LevelFactory {
@@ -118,7 +117,7 @@ public class LevelFactory {
         engine.addEntity(entity);
     }
 
-    public void createPlayer(TextureRegion tex, OrthographicCamera camera){
+    public Entity createPlayer(TextureRegion tex, OrthographicCamera camera){
         Entity entity = engine.createEntity();
         BodyComponent body = engine.createComponent(BodyComponent.class);
         TransformComponent position = engine.createComponent(TransformComponent.class);
@@ -145,5 +144,36 @@ public class LevelFactory {
         entity.add(stateCom);
 
         engine.addEntity(entity);
+
+        return entity;
+    }
+
+    public Entity createWaterFloor(TextureRegion tex) {
+        Entity entity = engine.createEntity();
+        BodyComponent body = engine.createComponent(BodyComponent.class);
+        TransformComponent position = engine.createComponent(TransformComponent.class);
+        TextureComponent texture = engine.createComponent(TextureComponent.class);
+        TypeComponent type = engine.createComponent(TypeComponent.class);
+        WaterFloorComponent waterFloor = engine.createComponent(WaterFloorComponent.class);
+
+        type.type = TypeComponent.ENEMY;
+        texture.region = tex;
+        body.body = bodyFactory.makeBoxPolyBody(20,-15,40,10, STONE, KinematicBody,true);
+        position.position.set(20,-15,0);
+        entity.add(body);
+        entity.add(position);
+        entity.add(texture);
+        entity.add(type);
+        entity.add(waterFloor);
+
+        body.body.setUserData(entity);
+
+        engine.addEntity(entity);
+
+        return entity;
+    }
+
+    public Entity createWalls(TextureRegion tex) {
+        return null;
     }
 }

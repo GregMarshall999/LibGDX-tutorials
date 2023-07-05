@@ -16,7 +16,7 @@ import java.util.Comparator;
 
 
 public class RenderingSystem extends SortedIteratingSystem {
-    static final float PPM = 32.0f; //amount of pixels per metre of object
+    public static final float PPM = 32.0f; //amount of pixels per metre of object
 
     //camera width and height
     static final float FRUSTUM_WIDTH = Gdx.graphics.getWidth()/PPM;
