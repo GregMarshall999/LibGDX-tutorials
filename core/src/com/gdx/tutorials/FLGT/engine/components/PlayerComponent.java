@@ -7,6 +7,10 @@ import com.badlogic.gdx.utils.Pool.Poolable;
 public class PlayerComponent implements Component, Poolable {
     public OrthographicCamera camera;
 
+    public boolean isDead = false;
+    public boolean onPlatform = false;
+    public boolean onSpring = false;
+
     @Override
     public void reset() {
 

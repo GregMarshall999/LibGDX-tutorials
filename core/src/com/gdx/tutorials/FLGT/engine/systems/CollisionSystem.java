@@ -8,6 +8,8 @@ import com.gdx.tutorials.FLGT.engine.components.CollisionComponent;
 import com.gdx.tutorials.FLGT.engine.components.PlayerComponent;
 import com.gdx.tutorials.FLGT.engine.components.TypeComponent;
 
+import static com.gdx.tutorials.FLGT.engine.components.TypeComponent.*;
+
 public class CollisionSystem extends IteratingSystem {
     ComponentMapper<CollisionComponent> collisionMapper;
     ComponentMapper<PlayerComponent> playerMapper;
@@ -29,12 +31,16 @@ public class CollisionSystem extends IteratingSystem {
             TypeComponent type = collidedEntity.getComponent(TypeComponent.class);
             if(type != null) {
                 switch (type.type) {
-                    case TypeComponent.ENEMY -> System.out.println("Player hit enemy");
-                    case TypeComponent.SCENERY -> System.out.println("Player hit scenery");
-                    case TypeComponent.OTHER -> System.out.println("Player hit other");
+                    case ENEMY -> playerMapper.get(entity).isDead = true;
+                    case SCENERY -> playerMapper.get(entity).onPlatform = true;
+                    case SPRING -> playerMapper.get(entity).onSpring = true;
+                    case OTHER -> System.out.println("Player hit other");
+                    default -> System.out.println("No matching type found");
                 }
                 cc.entity = null;
             }
+            else
+                System.out.println("type == null");
         }
     }
 }

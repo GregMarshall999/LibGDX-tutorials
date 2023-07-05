@@ -35,19 +35,29 @@ public class LevelFactory {
     }
 
     public void generateLevel(int yLevel) {
-        float noise1, noise2, noise3, noise4;
+        float noise1, noise2, noise3, noise4, noise5, noise6, noise7, noise8;
 
         while (yLevel > currentLevel) {
             noise1 = (float) noise.getNoise(1, currentLevel, 0);
             noise2 = (float) noise.getNoise(1, currentLevel, 100);
             noise3 = (float) noise.getNoise(1, currentLevel, 200);
             noise4 = (float) noise.getNoise(1, currentLevel, 300);
+            noise5 = (float) noise.getNoise(1, currentLevel, 1400);
+            noise6 = (float) noise.getNoise(1, currentLevel, 2500);
+            noise7 = (float) noise.getNoise(1, currentLevel, 2700);
+            noise8 = (float) noise.getNoise(1, currentLevel, 3000);
 
-            if(noise1 > 0.2f)
+            if(noise1 > 0.2f) {
                 createPlatform(noise2 * 25 + 2, currentLevel * 2);
+                if(noise5 > 0.5f)
+                    createBouncyPlatform(noise2 * 25 + 2, currentLevel * 2);
+            }
 
-            if(noise3 > 0.2f)
+            if(noise3 > 0.2f) {
                 createPlatform(noise4 * 25 + 2, currentLevel * 2);
+                if(noise6 > 0.4f)
+                    createBouncyPlatform(noise4 * 25 + 2, currentLevel * 2);
+            }
 
             currentLevel++;
         }
@@ -66,6 +76,28 @@ public class LevelFactory {
         entity.add(texture);
         entity.add(type);
         engine.addEntity(entity);
+    }
+
+    public Entity createBouncyPlatform(float x, float y) {
+        Entity entity = engine.createEntity();
+
+        BodyComponent body = engine.createComponent(BodyComponent.class);
+        body.body = bodyFactory.makeBoxPolyBody(x, y, .5f, 0.5f, STONE, StaticBody);
+        bodyFactory.makeAllFixturesSensors(body.body);
+
+        //todo get another texture and anim for springy action
+        TextureComponent texture = engine.createComponent(TextureComponent.class);
+        texture.region = floorTex;
+        TypeComponent type = engine.createComponent(TypeComponent.class);
+        type.type = TypeComponent.SPRING;
+
+        body.body.setUserData(entity);
+        entity.add(body);
+        entity.add(texture);
+        entity.add(type);
+        engine.addEntity(entity);
+
+        return entity;
     }
 
     public void createFloor(TextureRegion tex){

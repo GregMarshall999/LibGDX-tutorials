@@ -40,6 +40,12 @@ public class PlayerControlSystem extends IteratingSystem {
                 state.set(StateComponent.STATE_MOVING);
         }
 
+        if (playerMapper.get(entity).onSpring) {
+            body.body.applyLinearImpulse(0, 175f, body.body.getWorldCenter().x, body.body.getWorldCenter().y, true);
+            state.set(StateComponent.STATE_JUMPING);
+            playerMapper.get(entity).onSpring = false;
+        }
+
         if(PCControls.left)
             body.body.setLinearVelocity(MathUtils.lerp(body.body.getLinearVelocity().x, -5f, 0.2f), body.body.getLinearVelocity().y);
 
