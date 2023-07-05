@@ -17,7 +17,6 @@ import com.gdx.tutorials.FLGT.game.FLGTAssets;
 import com.gdx.tutorials.FLGT.game.EntityFactory;
 import com.gdx.tutorials.FLGT.game.body.BodyFactory;
 import com.gdx.tutorials.FLGT.game.FLGTContactListener;
-import com.gdx.tutorials.FLGT.systems.*;
 
 public class MainScreen extends AbstractFLGTScreen {
     private PCControls controller;

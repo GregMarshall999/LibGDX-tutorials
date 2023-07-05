@@ -3,7 +3,6 @@ package com.gdx.tutorials.FLGT.game;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.PooledEngine;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.gdx.tutorials.FLGT.components.*;
 import com.gdx.tutorials.FLGT.engine.components.*;
 import com.gdx.tutorials.FLGT.game.body.BodyFactory;
 import com.gdx.tutorials.FLGT.game.body.material.MaterialType;
