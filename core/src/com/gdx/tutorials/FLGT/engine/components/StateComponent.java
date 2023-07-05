@@ -1,4 +1,4 @@
-package com.gdx.tutorials.FLGT.components;
+package com.gdx.tutorials.FLGT.engine.components;
 
 import com.badlogic.ashley.core.Component;
 import com.badlogic.gdx.utils.Pool.Poolable;

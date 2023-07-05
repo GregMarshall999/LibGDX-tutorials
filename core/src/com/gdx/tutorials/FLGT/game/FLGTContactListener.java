@@ -2,7 +2,7 @@ package com.gdx.tutorials.FLGT.game;
 
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.physics.box2d.*;
-import com.gdx.tutorials.FLGT.components.CollisionComponent;
+import com.gdx.tutorials.FLGT.engine.components.CollisionComponent;
 
 public class FLGTContactListener implements ContactListener {
     @Override

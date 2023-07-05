@@ -1,13 +1,13 @@
-package com.gdx.tutorials.FLGT.systems;
+package com.gdx.tutorials.FLGT.engine.systems;
 
 import com.badlogic.ashley.core.ComponentMapper;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
 import com.badlogic.gdx.math.MathUtils;
-import com.gdx.tutorials.FLGT.components.BodyComponent;
-import com.gdx.tutorials.FLGT.components.PlayerComponent;
-import com.gdx.tutorials.FLGT.components.StateComponent;
+import com.gdx.tutorials.FLGT.engine.components.BodyComponent;
+import com.gdx.tutorials.FLGT.engine.components.PlayerComponent;
+import com.gdx.tutorials.FLGT.engine.components.StateComponent;
 import com.gdx.tutorials.FLGT.control.PCControls;
 
 public class PlayerControlSystem extends IteratingSystem {

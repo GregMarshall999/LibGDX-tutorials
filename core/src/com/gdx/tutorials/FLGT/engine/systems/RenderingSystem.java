@@ -1,4 +1,4 @@
-package com.gdx.tutorials.FLGT.systems;
+package com.gdx.tutorials.FLGT.engine.systems;
 
 import com.badlogic.ashley.core.ComponentMapper;
 import com.badlogic.ashley.core.Entity;
@@ -9,8 +9,8 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
-import com.gdx.tutorials.FLGT.components.TextureComponent;
-import com.gdx.tutorials.FLGT.components.TransformComponent;
+import com.gdx.tutorials.FLGT.engine.components.TextureComponent;
+import com.gdx.tutorials.FLGT.engine.components.TransformComponent;
 
 import java.util.Comparator;
 

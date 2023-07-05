@@ -1,8 +1,8 @@
-package com.gdx.tutorials.FLGT.systems;
+package com.gdx.tutorials.FLGT.engine.systems;
 
 import com.badlogic.ashley.core.ComponentMapper;
 import com.badlogic.ashley.core.Entity;
-import com.gdx.tutorials.FLGT.components.TransformComponent;
+import com.gdx.tutorials.FLGT.engine.components.TransformComponent;
 
 import java.util.Comparator;
 

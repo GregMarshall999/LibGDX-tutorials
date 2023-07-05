@@ -1,4 +1,4 @@
-package com.gdx.tutorials.FLGT.tools.noise;
+package com.gdx.tutorials.FLGT.engine.noise;
 
 import java.util.Random;
 

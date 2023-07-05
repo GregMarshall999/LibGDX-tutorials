@@ -1,7 +1,7 @@
 package com.gdx.tutorials.FLGT;
 
 import com.badlogic.gdx.Game;
-import com.gdx.tutorials.FLGT.assets.FLGTAssets;
+import com.gdx.tutorials.FLGT.game.FLGTAssets;
 import com.gdx.tutorials.FLGT.display.DisplayUtility;
 
 public class FLGT extends Game {

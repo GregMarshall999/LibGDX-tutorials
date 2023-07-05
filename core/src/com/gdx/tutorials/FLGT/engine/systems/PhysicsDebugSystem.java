@@ -1,4 +1,4 @@
-package com.gdx.tutorials.FLGT.systems;
+package com.gdx.tutorials.FLGT.engine.systems;
 
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;

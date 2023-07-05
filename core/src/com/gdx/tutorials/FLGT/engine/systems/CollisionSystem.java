@@ -1,12 +1,12 @@
-package com.gdx.tutorials.FLGT.systems;
+package com.gdx.tutorials.FLGT.engine.systems;
 
 import com.badlogic.ashley.core.ComponentMapper;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
-import com.gdx.tutorials.FLGT.components.CollisionComponent;
-import com.gdx.tutorials.FLGT.components.PlayerComponent;
-import com.gdx.tutorials.FLGT.components.TypeComponent;
+import com.gdx.tutorials.FLGT.engine.components.CollisionComponent;
+import com.gdx.tutorials.FLGT.engine.components.PlayerComponent;
+import com.gdx.tutorials.FLGT.engine.components.TypeComponent;
 
 public class CollisionSystem extends IteratingSystem {
     ComponentMapper<CollisionComponent> collisionMapper;

@@ -1,4 +1,4 @@
-package com.gdx.tutorials.FLGT.systems;
+package com.gdx.tutorials.FLGT.engine.systems;
 
 import com.badlogic.ashley.core.ComponentMapper;
 import com.badlogic.ashley.core.Entity;
@@ -8,8 +8,8 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
-import com.gdx.tutorials.FLGT.components.BodyComponent;
-import com.gdx.tutorials.FLGT.components.TransformComponent;
+import com.gdx.tutorials.FLGT.engine.components.BodyComponent;
+import com.gdx.tutorials.FLGT.engine.components.TransformComponent;
 
 public class PhysicsSystem extends IteratingSystem {
     private static final float MAX_STEP_TIME = 1/45f;

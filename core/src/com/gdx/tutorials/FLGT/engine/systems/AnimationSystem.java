@@ -1,13 +1,13 @@
-package com.gdx.tutorials.FLGT.systems;
+package com.gdx.tutorials.FLGT.engine.systems;
 
 import com.badlogic.ashley.core.ComponentMapper;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.gdx.tutorials.FLGT.components.AnimationComponent;
-import com.gdx.tutorials.FLGT.components.StateComponent;
-import com.gdx.tutorials.FLGT.components.TextureComponent;
+import com.gdx.tutorials.FLGT.engine.components.AnimationComponent;
+import com.gdx.tutorials.FLGT.engine.components.StateComponent;
+import com.gdx.tutorials.FLGT.engine.components.TextureComponent;
 
 public class AnimationSystem extends IteratingSystem {
     ComponentMapper<TextureComponent> textureMapper;
