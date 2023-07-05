@@ -11,6 +11,12 @@ public class SimplexNoise {
     double persistence;
     int seed;
 
+    /**
+     * Creates a simplex noise generator
+     * @param largeFeature the effective feature max size
+     * @param persistence the roughness of the generation between features
+     * @param seed the randomness initializer
+     */
     public SimplexNoise(int largeFeature, double persistence, int seed) {
         this.largeFeature = largeFeature;
         this.persistence = persistence;

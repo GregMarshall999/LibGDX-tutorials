@@ -1,4 +1,4 @@
-package com.gdx.tutorials.FLGT.game;
+package com.gdx.tutorials.FLGT.game.factory;
 
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.PooledEngine;

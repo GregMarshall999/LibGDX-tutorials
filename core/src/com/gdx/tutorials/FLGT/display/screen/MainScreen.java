@@ -7,64 +7,51 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.World;
 import com.gdx.tutorials.FLGT.control.PCControls;
 import com.gdx.tutorials.FLGT.FLGT;
 import com.gdx.tutorials.FLGT.display.AbstractFLGTScreen;
 import com.gdx.tutorials.FLGT.engine.systems.*;
 import com.gdx.tutorials.FLGT.game.FLGTAssets;
-import com.gdx.tutorials.FLGT.game.EntityFactory;
-import com.gdx.tutorials.FLGT.game.body.BodyFactory;
-import com.gdx.tutorials.FLGT.game.FLGTContactListener;
+import com.gdx.tutorials.FLGT.game.factory.LevelFactory;
 
 public class MainScreen extends AbstractFLGTScreen {
-    private PCControls controller;
-    private World world;
-    private BodyFactory bodyFactory;
-    private SpriteBatch batch;
     private OrthographicCamera camera;
+    private PCControls controller;
+    private SpriteBatch batch;
+    private PooledEngine engine;
+    private LevelFactory levelFactory;
 
-    private TextureAtlas atlas;
     private Sound ping;
     private Sound boing;
-
-    private PooledEngine engine;
+    private TextureAtlas atlas;
 
     public MainScreen(FLGT applicationContext) {
         super(applicationContext);
 
+        this.applicationContext.assetManager.queueAddAllSounds().finishLoading();
+
+        atlas = this.applicationContext.assetManager.get(FLGTAssets.gameImages, TextureAtlas.class);
+        ping = this.applicationContext.assetManager.get(FLGTAssets.pingSound, Sound.class);
+        boing = this.applicationContext.assetManager.get(FLGTAssets.boingSound, Sound.class);
         controller = new PCControls();
-        world = new World(new Vector2(0, -10f), true);
-        world.setContactListener(new FLGTContactListener());
-        bodyFactory = BodyFactory.getInstance(world);
+        engine = new PooledEngine();
+        levelFactory = new LevelFactory(engine, atlas.findRegion("player"));
+
         batch = new SpriteBatch();
         RenderingSystem renderingSystem = new RenderingSystem(batch);
         camera = renderingSystem.getCamera();
         batch.setProjectionMatrix(camera.combined);
 
-        this.applicationContext.assetManager.queueAddAllSounds().finishLoading();
-        atlas = this.applicationContext.assetManager.get(FLGTAssets.gameImages, TextureAtlas.class);
-        ping = this.applicationContext.assetManager.get(FLGTAssets.pingSound, Sound.class);
-        boing = this.applicationContext.assetManager.get(FLGTAssets.boingSound, Sound.class);
-
-        engine = new PooledEngine();
-
         engine.addSystem(new AnimationSystem());
+        engine.addSystem(new PhysicsSystem(levelFactory.world));
         engine.addSystem(renderingSystem);
-        engine.addSystem(new PhysicsSystem(world));
-        engine.addSystem(new PhysicsDebugSystem(world, renderingSystem.getCamera()));
+        engine.addSystem(new PhysicsDebugSystem(levelFactory.world, renderingSystem.getCamera()));
         engine.addSystem(new CollisionSystem());
         engine.addSystem(new PlayerControlSystem(controller));
+        engine.addSystem(new LevelGenerationSystem(levelFactory));
 
-        EntityFactory.createPlayer(engine, bodyFactory, atlas);
-
-        EntityFactory.createPlatform(engine, bodyFactory, atlas, 2, 2);
-        EntityFactory.createPlatform(engine, bodyFactory, atlas, 2, 7);
-        EntityFactory.createPlatform(engine, bodyFactory, atlas, 7, 2);
-        EntityFactory.createPlatform(engine, bodyFactory, atlas, 7, 7);
-
-        EntityFactory.createFloor(engine, bodyFactory, atlas);
+        levelFactory.createPlayer(atlas.findRegion("player"), camera);
+        levelFactory.createFloor(atlas.findRegion("player"));
     }
 
     @Override
@@ -102,10 +89,9 @@ public class MainScreen extends AbstractFLGTScreen {
 
     @Override
     public void dispose() {
-        world.dispose();
         batch.dispose();
-        atlas.dispose();
         ping.dispose();
         boing.dispose();
+        atlas.dispose();
     }
 }
