@@ -4,46 +4,34 @@ import com.gdx.tutorials.FLGT.FLGT;
 import com.gdx.tutorials.FLGT.display.screen.*;
 
 public abstract class DisplayUtility {
-    private static PreferenceScreen preferenceScreen;
+    private static StartupScreen startupScreen;
+    private static PreferencesScreen preferencesScreen;
     private static MenuScreen menuScreen;
     private static MainScreen mainScreen;
     private static EndScreen endScreen;
 
-    /**
-     * Changes the screen for the given context
-     * @param context Running application context
-     * @param screen screen id to switch to
-     */
-    public static void changeScreen(FLGT context, FLGTScreen screen) {
+    public static void changeScreen(FLGTScreen screen, FLGT context) {
         switch (screen) {
+            case STARTUP -> {
+                if (startupScreen == null) startupScreen = new StartupScreen(context);
+                context.setScreen(startupScreen);
+            }
             case MENU -> {
-                if(menuScreen == null)
-                    menuScreen = new MenuScreen(context);
+                if (menuScreen == null) menuScreen = new MenuScreen(context);
                 context.setScreen(menuScreen);
             }
-            case PREFERENCE -> {
-                if(preferenceScreen == null)
-                    preferenceScreen = new PreferenceScreen(context);
-                context.setScreen(preferenceScreen);
+            case PREFERENCES -> {
+                if (preferencesScreen == null) preferencesScreen = new PreferencesScreen(context);
+                context.setScreen(preferencesScreen);
             }
             case APPLICATION -> {
-                if(mainScreen == null)
-                    mainScreen = new MainScreen(context);
+                mainScreen = new MainScreen(context);
                 context.setScreen(mainScreen);
             }
             case ENDGAME -> {
-                if(endScreen == null)
-                    endScreen = new EndScreen(context);
+                if (endScreen == null) endScreen = new EndScreen(context);
                 context.setScreen(endScreen);
             }
         }
-    }
-
-    /**
-     * Prepares startup screen for the given application context
-     * @param context Application context
-     */
-    public static void initStartup(FLGT context) {
-        context.setScreen(new StartupScreen(context));
     }
 }

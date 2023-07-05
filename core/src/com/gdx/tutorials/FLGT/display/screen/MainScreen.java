@@ -11,11 +11,10 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.gdx.tutorials.FLGT.control.PCControls;
 import com.gdx.tutorials.FLGT.FLGT;
-import com.gdx.tutorials.FLGT.display.AbstractFLGTScreen;
-import com.gdx.tutorials.FLGT.engine.Utils;
+import com.gdx.tutorials.FLGT.engine.FLGTUtils;
 import com.gdx.tutorials.FLGT.engine.systems.*;
 import com.gdx.tutorials.FLGT.game.FLGTAssets;
-import com.gdx.tutorials.FLGT.game.factory.LevelFactory;
+import com.gdx.tutorials.FLGT.engine.factory.LevelFactory;
 
 public class MainScreen extends AbstractFLGTScreen {
     private OrthographicCamera camera;
@@ -60,17 +59,17 @@ public class MainScreen extends AbstractFLGTScreen {
 
         int floorWidth = (int) (40*RenderingSystem.PPM);
         int floorHeight = (int) (1*RenderingSystem.PPM);
-        TextureRegion floorRegion = Utils.makeTextureRegion(floorWidth, floorHeight, "11331180");
+        TextureRegion floorRegion = FLGTUtils.makeTextureRegion(floorWidth, floorHeight, "11331180");
         levelFactory.createFloor(floorRegion);
 
         int wFloorWidth = (int) (40*RenderingSystem.PPM);
         int wFloorHeight = (int) (10*RenderingSystem.PPM);
-        TextureRegion wFloorRegion = Utils.makeTextureRegion(wFloorWidth, wFloorHeight, "11113380");
+        TextureRegion wFloorRegion = FLGTUtils.makeTextureRegion(wFloorWidth, wFloorHeight, "11113380");
         levelFactory.createWaterFloor(wFloorRegion);
 
         int wallWidth = (int) (1*RenderingSystem.PPM);
         int wallHeight = (int) (60*RenderingSystem.PPM);
-        TextureRegion wallRegion = Utils.makeTextureRegion(wallWidth, wallHeight, "222222FF");
+        TextureRegion wallRegion = FLGTUtils.makeTextureRegion(wallWidth, wallHeight, "222222FF");
         levelFactory.createWalls(wallRegion);
     }
 

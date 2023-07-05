@@ -1,7 +1,6 @@
 package com.gdx.tutorials.FLGT.display.screen;
 
 import com.gdx.tutorials.FLGT.FLGT;
-import com.gdx.tutorials.FLGT.display.AbstractFLGTScreen;
 
 public class EndScreen extends AbstractFLGTScreen {
     public EndScreen(FLGT context) {

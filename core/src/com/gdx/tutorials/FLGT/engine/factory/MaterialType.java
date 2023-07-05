@@ -1,4 +1,4 @@
-package com.gdx.tutorials.FLGT.game.body.material;
+package com.gdx.tutorials.FLGT.engine.factory;
 
 public enum MaterialType {
     DEFAULT(7f, 0.5f, 0.3f),

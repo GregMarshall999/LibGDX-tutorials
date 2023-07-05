@@ -7,7 +7,6 @@ import com.gdx.tutorials.FLGT.engine.components.CollisionComponent;
 public class FLGTContactListener implements ContactListener {
     @Override
     public void beginContact(Contact contact) {
-        System.out.println("Contact");
         Fixture fa = contact.getFixtureA();
         Fixture fb = contact.getFixtureB();
         System.out.println(fa.getBody().getType() + " has hit " + fb.getBody().getType());
@@ -25,7 +24,7 @@ public class FLGTContactListener implements ContactListener {
 
     @Override
     public void endContact(Contact contact) {
-        System.out.println("Contact end");
+
     }
 
     @Override

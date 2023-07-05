@@ -6,7 +6,7 @@ import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
 import com.gdx.tutorials.FLGT.engine.components.PlayerComponent;
 import com.gdx.tutorials.FLGT.engine.components.TransformComponent;
-import com.gdx.tutorials.FLGT.game.factory.LevelFactory;
+import com.gdx.tutorials.FLGT.engine.factory.LevelFactory;
 
 public class LevelGenerationSystem extends IteratingSystem {
     private ComponentMapper<TransformComponent> transformMapper = ComponentMapper.getFor(TransformComponent.class);

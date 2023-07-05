@@ -13,8 +13,6 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TiledDrawable;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.gdx.tutorials.FLGT.FLGT;
-import com.gdx.tutorials.FLGT.display.AbstractFLGTScreen;
-import com.gdx.tutorials.FLGT.display.FLGTScreen;
 import com.gdx.tutorials.FLGT.game.FLGTAssets;
 import com.gdx.tutorials.FLGT.display.DisplayUtility;
 
@@ -44,18 +42,6 @@ public class MenuScreen extends AbstractFLGTScreen {
         exit = new TextButton("Exit", skin);
 
         //button events init
-        newGame.addListener(new ChangeListener() {
-            @Override
-            public void changed(ChangeEvent event, Actor actor) {
-                DisplayUtility.changeScreen(context, FLGTScreen.APPLICATION);
-            }
-        });
-        preferences.addListener(new ChangeListener() {
-            @Override
-            public void changed(ChangeEvent event, Actor actor) {
-                DisplayUtility.changeScreen(context, FLGTScreen.PREFERENCE);
-            }
-        });
         exit.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {

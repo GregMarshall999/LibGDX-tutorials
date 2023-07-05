@@ -1,11 +1,9 @@
-package com.gdx.tutorials.FLGT.game.factory;
+package com.gdx.tutorials.FLGT.engine.factory;
 
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.PooledEngine;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.gdx.tutorials.FLGT.engine.components.*;
-import com.gdx.tutorials.FLGT.game.body.BodyFactory;
-import com.gdx.tutorials.FLGT.game.body.material.MaterialType;
 
 import static com.badlogic.gdx.physics.box2d.BodyDef.BodyType.DynamicBody;
 import static com.badlogic.gdx.physics.box2d.BodyDef.BodyType.StaticBody;

@@ -6,8 +6,10 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.math.Vector3;
 
-public abstract class Utils {
+public abstract class FLGTUtils {
     private static String[] fNames;
     private static String[] lNames;
     private static Pixmap pixmap;
@@ -57,7 +59,7 @@ public abstract class Utils {
      * Generates a random name using 2 text files in the assets folder
      * @return random name
      */
-    public static String generateRandomName(){
+    public static String generateRandomName() {
         String name = "";
         if(fNames == null){
             FileHandle fnfile = Gdx.files.internal("fname.txt");
@@ -79,37 +81,37 @@ public abstract class Utils {
      * Quick access to console logging
      * @param o
      */
-    public static void log(Object o){
+    public static void log(Object o) {
         System.out.println(o);
     }
 
-    public static Texture makeTexture(int width, int height, String hex){
-        if(hex.length() == 6 ){
+    public static Texture makeTexture(int width, int height, String hex) {
+        if(hex.length() == 6)
             hex+="FF";
-        }
+
         return makeTexture(width,height,Color.valueOf(hex));
     }
 
-    public static TextureRegion makeTextureRegion(int width, int height, String hex){
-        if(hex.length() == 6 ){
+    public static TextureRegion makeTextureRegion(int width, int height, String hex) {
+        if(hex.length() == 6 )
             hex+="FF";
-        }
+
         return makeTextureRegion(width,height,Color.valueOf(hex));
     }
 
-    public static TextureRegion makeTextureRegion(int width, int height, Color col){
+    public static TextureRegion makeTextureRegion(int width, int height, Color col) {
         TextureRegion tex = new TextureRegion(makeTexture(width,height,col));
         return tex;
     }
 
-    public static Texture makeTexture(int width, int height, Color col){
+    public static Texture makeTexture(int width, int height, Color col) {
         Texture tex;
         tex = new Texture(makePixMap(width,height,col));
         disposePixmap();
         return tex;
     }
 
-    private static Pixmap makePixMap(int width, int height, Color fill){
+    private static Pixmap makePixMap(int width, int height, Color fill) {
         pixmap = new Pixmap(width, height, Pixmap.Format.RGBA8888);
         pixmap.setColor(fill);
         pixmap.fill();
@@ -118,5 +120,58 @@ public abstract class Utils {
 
     private static void disposePixmap(){
         pixmap.dispose();
+    }
+
+    public static TextureRegion makeTextureRegion(float f, float g, String hex) {
+        int fval = (int)f;
+        int gval = (int)g;
+        return makeTextureRegion(fval,gval,hex);
+    }
+
+    public static TextureRegion[] spriteSheetToFrames(TextureRegion region, int FRAME_COLS, int FRAME_ROWS){
+        TextureRegion[][] tmp = region.split(region.getRegionWidth() / FRAME_COLS,
+                region.getRegionHeight() / FRAME_ROWS);
+
+        TextureRegion[] frames = new TextureRegion[FRAME_COLS * FRAME_ROWS];
+        int index = 0;
+        for (int i = 0; i < FRAME_ROWS; i++) {
+            for (int j = 0; j < FRAME_COLS; j++) {
+                frames[index++] = tmp[i][j];
+            }
+        }
+
+        return frames;
+    }
+
+    public static float vectorToAngle (Vector2 vector) {
+        return (float)Math.atan2(-vector.x, vector.y);
+    }
+
+    public static Vector2 angleToVector (Vector2 outVector, float angle) {
+        outVector.x = -(float)Math.sin(angle);
+        outVector.y = (float)Math.cos(angle);
+        return outVector;
+    }
+
+    public static Vector2 aimTo(Vector2 shooter, Vector2 target){
+        Vector2 aim = new Vector2();
+        float velx = target.x - shooter.x;
+        float vely = target.y - shooter.y;
+        float length = (float) Math.sqrt(velx * velx + vely * vely);
+        if (length != 0) {
+            aim.x = velx / length;
+            aim.y = vely / length;
+        }
+        return aim;
+    }
+
+
+    /** Takes Vector 3 as argument here for mouse location(unproject etc)
+     * @param shooter Vector 2 for shooter position
+     * @param target Vector 3 for target location
+     * @return
+     */
+    public static Vector2 aimTo(Vector2 shooter, Vector3 target) {
+        return aimTo(shooter, new Vector2(target.x,target.y));
     }
 }

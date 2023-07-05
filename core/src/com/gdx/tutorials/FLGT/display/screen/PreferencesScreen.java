@@ -8,13 +8,11 @@ import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.gdx.tutorials.FLGT.FLGT;
-import com.gdx.tutorials.FLGT.data.AppPreferences;
-import com.gdx.tutorials.FLGT.display.AbstractFLGTScreen;
-import com.gdx.tutorials.FLGT.display.FLGTScreen;
+import com.gdx.tutorials.FLGT.game.FLGTPreferences;
 import com.gdx.tutorials.FLGT.display.DisplayUtility;
 import com.gdx.tutorials.FLGT.game.FLGTAssets;
 
-public class PreferenceScreen extends AbstractFLGTScreen {
+public class PreferencesScreen extends AbstractFLGTScreen {
     private final Stage stage;
     private final Table table; //<- can't be disposed
 
@@ -30,7 +28,7 @@ public class PreferenceScreen extends AbstractFLGTScreen {
     private final Label musicSwitchLabel;
     private final Label soundSwitchLabel;
 
-    public PreferenceScreen(FLGT context) {
+    public PreferencesScreen(FLGT context) {
         super(context);
 
         assetManager.queueAddAllSkins().finishLoading();
@@ -55,27 +53,27 @@ public class PreferenceScreen extends AbstractFLGTScreen {
 
         menuReturn = new TextButton("Back", skin, "small");
 
-        musicVolumeSlider.setValue(AppPreferences.getMusicVolume());
+        musicVolumeSlider.setValue(FLGTPreferences.getMusicVolume());
         musicVolumeSlider.addListener(event -> {
-            AppPreferences.setMusicVolume(musicVolumeSlider.getValue());
+            FLGTPreferences.setMusicVolume(musicVolumeSlider.getValue());
             return false;
         });
 
-        musicSwitch.setChecked(AppPreferences.isMusicEnabled());
+        musicSwitch.setChecked(FLGTPreferences.isMusicEnabled());
         musicSwitch.addListener(event -> {
-            AppPreferences.setMusicEnabled(musicSwitch.isChecked());
+            FLGTPreferences.setMusicEnabled(musicSwitch.isChecked());
             return false;
         });
 
-        soundVolumeSlider.setValue(AppPreferences.getSoundVolume());
+        soundVolumeSlider.setValue(FLGTPreferences.getSoundVolume());
         soundVolumeSlider.addListener(event -> {
-            AppPreferences.setSoundVolume(soundVolumeSlider.getValue());
+            FLGTPreferences.setSoundVolume(soundVolumeSlider.getValue());
             return false;
         });
 
-        soundSwitch.setChecked(AppPreferences.isSoundEnabled());
+        soundSwitch.setChecked(FLGTPreferences.isSoundEnabled());
         soundSwitch.addListener(event -> {
-            AppPreferences.setSoundEnabled(soundSwitch.isChecked());
+            FLGTPreferences.setSoundEnabled(soundSwitch.isChecked());
             return false;
         });
 

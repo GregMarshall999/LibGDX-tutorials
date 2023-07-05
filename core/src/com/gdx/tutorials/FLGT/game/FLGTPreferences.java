@@ -1,13 +1,14 @@
-package com.gdx.tutorials.FLGT.data;
+package com.gdx.tutorials.FLGT.game;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
 
-public abstract class AppPreferences {
-    private static final String PREF_MUSIC_VOLUME = "volume";
+public abstract class FLGTPreferences {
     private static final String PREF_MUSIC_ENABLED = "music.enabled";
-    private static final String PREF_SOUND_VOLUME = "sound";
     private static final String PREF_SOUND_ENABLED = "sound.enabled";
+    private static final String PREF_MUSIC_VOLUME = "volume";
+    private static final String PREF_SOUND_VOLUME = "sound";
+
     private static final String PREFS_NAME = "flgt";
 
     protected static Preferences getPrefs() {
