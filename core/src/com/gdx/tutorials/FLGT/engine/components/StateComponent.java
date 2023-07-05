@@ -2,30 +2,28 @@ package com.gdx.tutorials.FLGT.engine.components;
 
 import com.badlogic.ashley.core.Component;
 import com.badlogic.gdx.utils.Pool.Poolable;
+import com.gdx.tutorials.FLGT.engine.components.constants.State;
+
+import static com.gdx.tutorials.FLGT.engine.components.constants.State.STATE_NORMAL;
 
 public class StateComponent implements Component, Poolable {
-    public static final int STATE_NORMAL = 0;
-    public static final int STATE_JUMPING = 1;
-    public static final int STATE_FALLING = 2;
-    public static final int STATE_MOVING = 3;
-    public static final int STATE_HIT = 4;
-
-    private int state = 0;
-
+    private State state = STATE_NORMAL;
     public float time = 0.0f;
     public boolean isLooping = false;
 
     @Override
     public void reset() {
-
+        state = STATE_NORMAL;
+        time = 0.0f;
+        isLooping = false;
     }
 
-    public void set(int newState){
+    public void set(State newState){
         state = newState;
         time = 0.0f;
     }
 
-    public int get(){
+    public State get(){
         return state;
     }
 }

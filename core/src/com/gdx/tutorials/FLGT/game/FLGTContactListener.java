@@ -45,9 +45,9 @@ public class FLGTContactListener implements ContactListener {
             CollisionComponent colB = collidingEntity.getComponent(CollisionComponent.class);
 
             if(colA != null)
-                colA.entity = collidingEntity;
+                colA.collisionEntity = collidingEntity;
             else if(colB != null)
-                colB.entity = entity;
+                colB.collisionEntity = entity;
         }
     }
 }

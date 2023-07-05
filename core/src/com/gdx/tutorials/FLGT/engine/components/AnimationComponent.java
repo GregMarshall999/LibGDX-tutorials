@@ -10,6 +10,6 @@ public class AnimationComponent implements Component, Poolable {
 
     @Override
     public void reset() {
-
+        animations = new IntMap<>();
     }
 }

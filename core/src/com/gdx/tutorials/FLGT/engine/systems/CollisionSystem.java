@@ -25,7 +25,7 @@ public class CollisionSystem extends IteratingSystem {
     protected void processEntity(Entity entity, float deltaTime) {
         CollisionComponent cc = collisionMapper.get(entity);
 
-        Entity collidedEntity = cc.entity;
+        Entity collidedEntity = cc.collisionEntity;
 
         if(collidedEntity != null) {
             TypeComponent type = collidedEntity.getComponent(TypeComponent.class);
@@ -42,7 +42,7 @@ public class CollisionSystem extends IteratingSystem {
                     case OTHER -> System.out.println("Player hit other");
                     default -> System.out.println("No matching type found");
                 }
-                cc.entity = null;
+                cc.collisionEntity = null;
             }
             else
                 System.out.println("type == null");

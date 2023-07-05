@@ -6,9 +6,10 @@ import com.badlogic.gdx.utils.Pool.Poolable;
 
 public class BodyComponent implements Component, Poolable {
     public Body body;
+    public boolean isDead = false;
 
     @Override
     public void reset() {
-
+        isDead = false;
     }
 }

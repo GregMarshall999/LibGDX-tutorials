@@ -9,6 +9,6 @@ public class TextureComponent implements Component, Poolable {
 
     @Override
     public void reset() {
-
+        region = null;
     }
 }

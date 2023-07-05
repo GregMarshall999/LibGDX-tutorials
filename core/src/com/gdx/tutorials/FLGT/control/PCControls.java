@@ -7,9 +7,8 @@ import static com.badlogic.gdx.Input.Keys.*;
 
 public class PCControls implements InputProcessor {
     public static boolean left, right, up, down;
-
     public static boolean mouse1Down, mouse2Down, mouse3Down;
-    public static Vector2 mouseLocation = new Vector2();
+    public static Vector2 mouseLocation = new Vector2(0, 0);
     public static boolean dragging;
 
     @Override

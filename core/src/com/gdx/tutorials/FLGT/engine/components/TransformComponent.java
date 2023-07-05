@@ -13,6 +13,7 @@ public class TransformComponent implements Component, Poolable {
 
     @Override
     public void reset() {
-
+        rotation = 0.0f;
+        isHidden = false;
     }
 }
