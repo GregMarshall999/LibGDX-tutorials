@@ -4,7 +4,7 @@ import com.badlogic.ashley.core.ComponentMapper;
 
 public class Mapper {
     public static final ComponentMapper<AnimationComponent> animCom = ComponentMapper.getFor(AnimationComponent.class);
-    public static final ComponentMapper<BodyComponent> b2dCom = ComponentMapper.getFor(BodyComponent.class);
+    public static final ComponentMapper<BodyComponent> bodyCom = ComponentMapper.getFor(BodyComponent.class);
     public static final ComponentMapper<BulletComponent> bulletCom = ComponentMapper.getFor(BulletComponent.class);
     public static final ComponentMapper<CollisionComponent> collisionCom = ComponentMapper.getFor(CollisionComponent.class);
     public static final ComponentMapper<EnemyComponent> enemyCom = ComponentMapper.getFor(EnemyComponent.class);

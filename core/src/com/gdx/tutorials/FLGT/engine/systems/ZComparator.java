@@ -15,11 +15,17 @@ public class ZComparator implements Comparator<Entity> {
 
     @Override
     public int compare(Entity entityA, Entity entityB) {
+        if(entityA == null || entityB == null){
+            return 0;
+        }
         float az = componentMapper.get(entityA).position.z;
         float bz = componentMapper.get(entityB).position.z;
-
         int res = 0;
-
-        return Float.compare(az, bz);
+        if(az > bz){
+            res = 1;
+        }else if(az < bz){
+            res = -1;
+        }
+        return res;
     }
 }

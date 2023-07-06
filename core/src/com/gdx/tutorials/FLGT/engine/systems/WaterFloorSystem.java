@@ -6,23 +6,30 @@ import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.gdx.tutorials.FLGT.engine.components.BodyComponent;
+import com.gdx.tutorials.FLGT.engine.components.WaterFloorComponent;
 
 public class WaterFloorSystem extends IteratingSystem {
     private Entity player;
-    private ComponentMapper<BodyComponent> bodyMapper = ComponentMapper.getFor(BodyComponent.class);
+    private ComponentMapper<BodyComponent> bm = ComponentMapper.getFor(BodyComponent.class);
 
     public WaterFloorSystem(Entity player) {
-        super(Family.all(BodyComponent.class).get());
+        super(Family.all(WaterFloorComponent.class).get());
         this.player = player;
     }
 
     @Override
     protected void processEntity(Entity entity, float deltaTime) {
-        float currentLevel = player.getComponent(BodyComponent.class).body.getPosition().y;
-        Body body = bodyMapper.get(entity).body;
-        float speed = (currentLevel/300);
+        float currentyLevel = player.getComponent(BodyComponent.class).body.getPosition().y;
+        Body bod = bm.get(entity).body;
 
-        speed = speed > 1 ? 1 : speed;
-        body.setTransform(body.getPosition().x, body.getPosition().y + speed, body.getAngle());
+        float speed = (currentyLevel / 1000);
+
+        speed = speed>0.25f?0.25f:speed;
+
+        if(bod.getPosition().y < currentyLevel - 50){
+            bod.setTransform(bod.getPosition().x, currentyLevel - 50, bod.getAngle());
+        }
+
+        bod.setTransform(bod.getPosition().x, bod.getPosition().y+speed, bod.getAngle());
     }
 }

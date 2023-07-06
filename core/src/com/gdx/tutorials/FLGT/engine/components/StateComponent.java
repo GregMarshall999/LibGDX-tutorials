@@ -23,7 +23,7 @@ public class StateComponent implements Component, Poolable {
         time = 0.0f;
     }
 
-    public State get(){
-        return state;
+    public int get(){
+        return state.getId();
     }
 }

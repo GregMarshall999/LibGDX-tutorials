@@ -4,11 +4,14 @@ import com.badlogic.ashley.core.ComponentMapper;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
-import com.gdx.tutorials.FLGT.engine.components.CollisionComponent;
-import com.gdx.tutorials.FLGT.engine.components.PlayerComponent;
-import com.gdx.tutorials.FLGT.engine.components.TypeComponent;
+import com.gdx.tutorials.FLGT.engine.components.*;
+import com.gdx.tutorials.FLGT.engine.components.constants.BulletOwner;
+import com.gdx.tutorials.FLGT.engine.components.constants.Type;
 
-import static com.gdx.tutorials.FLGT.engine.components.TypeComponent.*;
+import java.util.Objects;
+
+import static com.gdx.tutorials.FLGT.engine.components.constants.Type.ENEMY;
+import static com.gdx.tutorials.FLGT.engine.components.constants.Type.PLAYER;
 
 public class CollisionSystem extends IteratingSystem {
     ComponentMapper<CollisionComponent> collisionMapper;
@@ -24,28 +27,46 @@ public class CollisionSystem extends IteratingSystem {
     @Override
     protected void processEntity(Entity entity, float deltaTime) {
         CollisionComponent cc = collisionMapper.get(entity);
-
         Entity collidedEntity = cc.collisionEntity;
 
-        if(collidedEntity != null) {
-            TypeComponent type = collidedEntity.getComponent(TypeComponent.class);
-            if(type != null) {
-                switch (type.type) {
-                    case ENEMY -> {
-                        PlayerComponent player = playerMapper.get(entity);
-                        player.isDead = true;
-                        int score = (int) player.camera.position.y;
-                        System.out.println("Score = " + score);
+        TypeComponent thisType = entity.getComponent(TypeComponent.class);
+
+        if(thisType.type == PLAYER){
+            PlayerComponent pl = playerMapper.get(entity);
+            if(collidedEntity != null){
+                TypeComponent type = collidedEntity.getComponent(TypeComponent.class);
+                if(type != null){
+                    switch(type.type){
+                        case ENEMY -> pl.isDead = true;
+                        case SCENERY -> playerMapper.get(entity).onPlatform = true;
+                        case SPRING -> playerMapper.get(entity).onSpring = true;
+                        case BULLET -> {
+                            // TODO add mask so player can't hit themselves
+                            BulletComponent bullet = Mapper.bulletCom.get(collidedEntity);
+                            if(bullet.owner != BulletOwner.PLAYER)
+                                pl.isDead = true;
+                        }
                     }
-                    case SCENERY -> playerMapper.get(entity).onPlatform = true;
-                    case SPRING -> playerMapper.get(entity).onSpring = true;
-                    case OTHER -> System.out.println("Player hit other");
-                    default -> System.out.println("No matching type found");
+                    cc.collisionEntity = null;
                 }
-                cc.collisionEntity = null;
             }
-            else
-                System.out.println("type == null");
+        }else if(thisType.type == ENEMY){
+            if(collidedEntity != null){
+                TypeComponent type = collidedEntity.getComponent(TypeComponent.class);
+                if(type != null){
+                    if (Objects.requireNonNull(type.type) == Type.BULLET) {
+                        EnemyComponent enemy = Mapper.enemyCom.get(entity);
+                        BulletComponent bullet = Mapper.bulletCom.get(collidedEntity);
+                        if (bullet.owner != BulletOwner.ENEMY) {
+                            bullet.isDead = true;
+                            enemy.isDead = true;
+                        }
+                    }
+                    cc.collisionEntity = null;
+                }
+            }
+        }else{
+            cc.collisionEntity = null;
         }
     }
 }

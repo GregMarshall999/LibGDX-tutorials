@@ -24,7 +24,7 @@ public class AnimationSystem extends IteratingSystem {
 
     @Override
     protected void processEntity(Entity entity, float deltaTime) {
-        AnimationComponent<?> animationComponent = animationMapper.get(entity);
+        AnimationComponent animationComponent = animationMapper.get(entity);
         StateComponent stateComponent = stateMapper.get(entity);
 
         if(animationComponent.animations.containsKey(stateComponent.get())) {

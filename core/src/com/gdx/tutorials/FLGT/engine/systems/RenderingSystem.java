@@ -14,67 +14,55 @@ import com.gdx.tutorials.FLGT.engine.components.TransformComponent;
 
 import java.util.Comparator;
 
-
 public class RenderingSystem extends SortedIteratingSystem {
-    public static final float PPM = 32.0f; //amount of pixels per metre of object
+    private boolean shouldRender = false;
 
-    //camera width and height
+    public static final float PPM = 16.0f;
     static final float FRUSTUM_WIDTH = Gdx.graphics.getWidth()/PPM;
     static final float FRUSTUM_HEIGHT = Gdx.graphics.getHeight()/PPM;
 
-    public static final float PIXELS_TO_METRES = 1.0f/PPM; //pixel to meter ratio
+    public static final float PIXELS_TO_METRES = 1.0f / PPM;
 
     private static Vector2 meterDimensions = new Vector2();
     private static Vector2 pixelDimensions = new Vector2();
 
+    public static Vector2 getScreenSizeInMeters(){
+        meterDimensions.set(Gdx.graphics.getWidth()*PIXELS_TO_METRES,
+                Gdx.graphics.getHeight()*PIXELS_TO_METRES);
+        return meterDimensions;
+    }
+
+    public static Vector2 getScreenSizeInPixesl(){
+        pixelDimensions.set(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        return pixelDimensions;
+    }
+
+    public static float PixelsToMeters(float pixelValue){
+        return pixelValue * PIXELS_TO_METRES;
+    }
+
     private SpriteBatch batch;
     private Array<Entity> renderQueue;
     private Comparator<Entity> comparator;
-    private OrthographicCamera camera;
+    private OrthographicCamera cam;
 
-    private ComponentMapper<TextureComponent> textureMapper;
-    private ComponentMapper<TransformComponent> transformMapper;
+    private ComponentMapper<TextureComponent> textureM;
+    private ComponentMapper<TransformComponent> transformM;
 
     public RenderingSystem(SpriteBatch batch) {
         super(Family.all(TransformComponent.class, TextureComponent.class).get(), new ZComparator());
 
-        textureMapper = ComponentMapper.getFor(TextureComponent.class);
-        transformMapper = ComponentMapper.getFor(TransformComponent.class);
+        textureM = ComponentMapper.getFor(TextureComponent.class);
+        transformM = ComponentMapper.getFor(TransformComponent.class);
 
         renderQueue = new Array<>();
 
         this.batch = batch;
 
-        camera = new OrthographicCamera(FRUSTUM_WIDTH, FRUSTUM_HEIGHT);
-        camera.position.set(FRUSTUM_WIDTH / 2f, FRUSTUM_HEIGHT / 2f, 0);
-    }
+        comparator = new ZComparator();
 
-    /**
-     * Converts the dimension of the screen in meters
-     * @return screen dimension in meters
-     */
-    public static Vector2 getScreenSizeInMeters() {
-        meterDimensions.set(Gdx.graphics.getWidth()*PIXELS_TO_METRES, Gdx.graphics.getHeight()*PIXELS_TO_METRES);
-        return meterDimensions;
-    }
-
-
-    /**
-     * Converts the dimension of the screen in pixels
-     * @return screen dimension in pixels
-     */
-    public static Vector2 getScreenInPixels() {
-        pixelDimensions.set(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        return pixelDimensions;
-    }
-
-    /**
-     * Cpnverts pixels to meters
-     * @param pixelValue pixel number to convert
-     * @return meter value of pixels
-     */
-    public static float pixelsToMetres(float pixelValue) {
-        return pixelValue * PIXELS_TO_METRES;
+        cam = new OrthographicCamera(FRUSTUM_WIDTH, FRUSTUM_HEIGHT);
+        cam.position.set(FRUSTUM_WIDTH / 2f, FRUSTUM_HEIGHT / 2f, 0);
     }
 
     @Override
@@ -83,42 +71,44 @@ public class RenderingSystem extends SortedIteratingSystem {
 
         renderQueue.sort(comparator);
 
-        camera.update();
-        batch.setProjectionMatrix(camera.combined);
+        cam.update();
+        batch.setProjectionMatrix(cam.combined);
         batch.enableBlending();
-        batch.begin();
+        if(shouldRender){
+            batch.begin();
 
-        for(Entity entity : renderQueue) {
-            TextureComponent texture = textureMapper.get(entity);
-            TransformComponent transform = transformMapper.get(entity);
+            for (Entity entity : renderQueue) {
+                TextureComponent tex = textureM.get(entity);
+                TransformComponent t = transformM.get(entity);
 
-            if(texture == null || transform.isHidden)
-                continue;
+                if (tex.region == null || t.isHidden) {
+                    continue;
+                }
 
-            float width = texture.region.getRegionWidth();
-            float height = texture.region.getRegionHeight();
+                float width = tex.region.getRegionWidth();
+                float height = tex.region.getRegionHeight();
 
-            float originX = width/2f;
-            float originY = width/2f;
+                float originX = width/2f;
+                float originY = height/2f;
 
-            batch.draw(texture.region,
-                    transform.position.x - originX, transform.position.y - originY,
-                    originX, originY,
-                    width, height,
-                    pixelsToMetres(transform.scale.x), pixelsToMetres(transform.scale.y),
-                    transform.rotation);
+                batch.draw(tex.region,
+                        t.position.x - originX, t.position.y - originY,
+                        originX, originY,
+                        width, height,
+                        PixelsToMeters(t.scale.x), PixelsToMeters(t.scale.y),
+                        t.rotation);
+            }
+            batch.end();
         }
-
-        batch.end();
         renderQueue.clear();
     }
 
     @Override
-    protected void processEntity(Entity entity, float deltaTime) {
+    public void processEntity(Entity entity, float deltaTime) {
         renderQueue.add(entity);
     }
 
     public OrthographicCamera getCamera() {
-        return camera;
+        return cam;
     }
 }
