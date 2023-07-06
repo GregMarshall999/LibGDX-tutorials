@@ -263,7 +263,7 @@ public class LevelFactory {
         }
     }
 
-    public Entity createWaterFloor(TextureRegion tex) {
+    public Entity createWaterFloor() {
         Entity entity = engine.createEntity();
         BodyComponent body = engine.createComponent(BodyComponent.class);
         TransformComponent position = engine.createComponent(TransformComponent.class);

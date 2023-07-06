@@ -3,7 +3,7 @@ package com.gdx.tutorials.FLGT.display.screen;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
@@ -13,70 +13,79 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TiledDrawable;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.gdx.tutorials.FLGT.FLGT;
+import com.gdx.tutorials.FLGT.display.DisplayUtility;
 import com.gdx.tutorials.FLGT.game.FLGTAssets;
 
+import static com.gdx.tutorials.FLGT.display.screen.FLGTScreen.APPLICATION;
+import static com.gdx.tutorials.FLGT.display.screen.FLGTScreen.PREFERENCES;
+
 public class MenuScreen extends AbstractFLGTScreen {
-    private final Stage stage;
-    private final Table table;
+    private Stage stage;
+    private Skin skin;
+    private TextureAtlas atlas;
+    private AtlasRegion background;
 
-    private final TextButton newGame;
-    private final TextButton preferences;
-    private final TextButton exit;
-
-    public MenuScreen(FLGT context) {
-        super(context);
-
-        assetManager.queueAddAllSkins().finishLoading();
-        Skin skin = assetManager.get(FLGTAssets.MENU_GLASSY_SKIN);
-        TextureAtlas atlas = assetManager.get(FLGTAssets.LOADING_IMAGES);
-        TextureRegion background = atlas.findRegion("flamebackground");
-
+    public MenuScreen(FLGT applicationContext){
+        super(applicationContext);
         stage = new Stage(new ScreenViewport());
-        table = new Table();
-        table.setBackground(new TiledDrawable(background));
 
-        //buttons init
-        newGame = new TextButton("New Game", skin);
-        preferences = new TextButton("Preferences", skin);
-        exit = new TextButton("Exit", skin);
-
-        //button events init
-        exit.addListener(new ChangeListener() {
-            @Override
-            public void changed(ChangeEvent event, Actor actor) {
-                Gdx.app.exit();
-            }
-        });
+        applicationContext.assetManager.queueAddSkin();
+        applicationContext.assetManager.finishLoading();
+        skin = applicationContext.assetManager.get(FLGTAssets.MENU_GLASSY_SKIN);
+        atlas = applicationContext.assetManager.get(FLGTAssets.LOADING_IMAGES);
+        background = atlas.findRegion("flamebackground");
     }
 
     @Override
     public void show() {
-        stage.clear();
-        table.clear();
+        Gdx.input.setInputProcessor(stage);
 
-        //UI table init
+        Table table = new Table();
         table.setFillParent(true);
-        //table.setDebug(true);
+        table.setDebug(true);
         stage.addActor(table);
 
-        //adding buttons to table
+        table.setBackground(new TiledDrawable(background));
+
+        TextButton newGame = new TextButton("New Game", skin);
+        TextButton preferences = new TextButton("Preferences", skin);
+        TextButton exit = new TextButton("Exit", skin);
+
         table.add(newGame).fillX().uniformX();
         table.row().pad(10, 0, 10, 0);
         table.add(preferences).fillX().uniformX();
         table.row();
         table.add(exit).fillX().uniformX();
 
-        Gdx.input.setInputProcessor(stage);
+        exit.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                Gdx.app.exit();
+            }
+        });
+
+        newGame.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                DisplayUtility.changeScreen(APPLICATION, applicationContext);
+            }
+        });
+
+        preferences.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                DisplayUtility.changeScreen(PREFERENCES, applicationContext);
+            }
+        });
+
     }
 
     @Override
     public void render(float delta) {
-        //clear screen
         Gdx.gl.glClearColor(0f, 0f, 0f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        //stage redraw
-        stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1/30f));
+        stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
         stage.draw();
     }
 
