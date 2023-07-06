@@ -31,7 +31,7 @@ public class FLGTAssets extends AssetManager {
 
     public void queueAddParticleEffects(){
         ParticleEffectParameter pep = new ParticleEffectParameter();
-        pep.atlasFile = "images/game.atlas";
+        pep.atlasFile = GAME_IMAGES;
         load(SMOKE_EFFECT, ParticleEffect.class, pep);
         load(WATER_EFFECT, ParticleEffect.class, pep);
         load(FIRE_EFFECT, ParticleEffect.class, pep);
@@ -46,7 +46,7 @@ public class FLGTAssets extends AssetManager {
     }
 
     public void queueAddSkin(){
-        SkinParameter params = new SkinParameter("flgt/skin/glassy-ui.atlas");
+        SkinParameter params = new SkinParameter("flgt/skins/glassy-ui.atlas");
         load(MENU_GLASSY_SKIN, Skin.class, params);
     }
 

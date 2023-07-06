@@ -7,6 +7,9 @@ import com.gdx.tutorials.FLGT.engine.components.*;
 
 import static com.badlogic.gdx.physics.box2d.BodyDef.BodyType.DynamicBody;
 import static com.badlogic.gdx.physics.box2d.BodyDef.BodyType.StaticBody;
+import static com.gdx.tutorials.FLGT.engine.components.constants.State.STATE_NORMAL;
+import static com.gdx.tutorials.FLGT.engine.components.constants.Type.PLAYER;
+import static com.gdx.tutorials.FLGT.engine.components.constants.Type.SCENERY;
 
 public abstract class EntityFactory {
     public static void createPlayer(PooledEngine engine, BodyFactory bodyFactory, TextureAtlas atlas) {
@@ -22,8 +25,8 @@ public abstract class EntityFactory {
         body.body = bodyFactory.makeCirclePolyBody(10, 10, 1, MaterialType.STONE, DynamicBody, true);
         position.position.set(10, 10, 0);
         texture.region = atlas.findRegion("player");
-        type.type = TypeComponent.PLAYER;
-        state.set(StateComponent.STATE_NORMAL);
+        type.type = PLAYER;
+        state.set(STATE_NORMAL);
         body.body.setUserData(entity);
 
         entity.add(body);
@@ -44,7 +47,7 @@ public abstract class EntityFactory {
         TextureComponent texture = engine.createComponent(TextureComponent.class);
         texture.region = atlas.findRegion("player");
         TypeComponent type = engine.createComponent(TypeComponent.class);
-        type.type = TypeComponent.SCENERY;
+        type.type = SCENERY;
         body.body.setUserData(entity);
 
         entity.add(body);
@@ -61,7 +64,7 @@ public abstract class EntityFactory {
         TextureComponent texture = engine.createComponent(TextureComponent.class);
         texture.region = atlas.findRegion("player");
         TypeComponent type = engine.createComponent(TypeComponent.class);
-        type.type = TypeComponent.SCENERY;
+        type.type = SCENERY;
 
         body.body.setUserData(entity);
 

@@ -22,7 +22,9 @@ import com.gdx.tutorials.FLGT.game.FLGTContactListener;
 
 import static com.badlogic.gdx.physics.box2d.BodyDef.BodyType.*;
 import static com.gdx.tutorials.FLGT.engine.components.constants.EnemyType.CLOUD;
+import static com.gdx.tutorials.FLGT.engine.components.constants.State.*;
 import static com.gdx.tutorials.FLGT.engine.components.constants.SteeringState.WANDER;
+import static com.gdx.tutorials.FLGT.engine.components.constants.Type.*;
 import static com.gdx.tutorials.FLGT.engine.effects.FLGTEffect.*;
 import static com.gdx.tutorials.FLGT.engine.factory.MaterialType.STONE;
 
@@ -60,9 +62,9 @@ public class LevelFactory {
         openSim = new OpenSimplexNoise(MathUtils.random(2000l));
 
         pem = new ParticleEffectManager();
-        pem.addParticleEffect(FIRE, assMan.get("particles/fire.pe", ParticleEffect.class),1f/128f);
-        pem.addParticleEffect(WATER, assMan.get("particles/water.pe", ParticleEffect.class),1f/8f);
-        pem.addParticleEffect(SMOKE, assMan.get("particles/smoke.pe", ParticleEffect.class),1f/64f);
+        pem.addParticleEffect(FIRE, assMan.get(FLGTAssets.FIRE_EFFECT, ParticleEffect.class),1f/128f);
+        pem.addParticleEffect(WATER, assMan.get(FLGTAssets.WATER_EFFECT, ParticleEffect.class),1f/8f);
+        pem.addParticleEffect(SMOKE, assMan.get(FLGTAssets.SMOKE_EFFECT, ParticleEffect.class),1f/64f);
     }
 
     public void generateLevel(int yLevel) {
@@ -107,7 +109,7 @@ public class LevelFactory {
         entity.add(texture);
 
         TypeComponent type = engine.createComponent(TypeComponent.class);
-        type.type = TypeComponent.SCENERY;
+        type.type = SCENERY;
         entity.add(type);
 
         TransformComponent trans = engine.createComponent(TransformComponent.class);
@@ -133,7 +135,7 @@ public class LevelFactory {
         entity.add(trans);
 
         TypeComponent type = engine.createComponent(TypeComponent.class);
-        type.type = TypeComponent.SPRING;
+        type.type = SPRING;
 
         body.body.setUserData(entity);
         entity.add(body);
@@ -153,7 +155,7 @@ public class LevelFactory {
 
         position.position.set(20,0,0);
         texture.region = floorTex;
-        type.type = TypeComponent.SCENERY;
+        type.type = SCENERY;
         body.body = bodyFactory.makeBoxPolyBody(20, -16, 46, 32, STONE, StaticBody);
 
         entity.add(body);
@@ -179,7 +181,7 @@ public class LevelFactory {
         position.position.set(x,y,0);
         texture.region = tex;
         enemy.xPosCenter = x;
-        type.type = TypeComponent.ENEMY;
+        type.type = ENEMY;
         body.body.setUserData(entity);
 
         entity.add(colComp);
@@ -209,16 +211,16 @@ public class LevelFactory {
         player.camera = camera;
         b2dbody.body = bodyFactory.makeCirclePolyBody(10,1,1, STONE, DynamicBody,true);
         Animation anim = new Animation(0.1f,atlas.findRegions("flame_a"));
-        animCom.animations.put(StateComponent.STATE_NORMAL, anim);
-        animCom.animations.put(StateComponent.STATE_MOVING, anim);
-        animCom.animations.put(StateComponent.STATE_JUMPING, anim);
-        animCom.animations.put(StateComponent.STATE_FALLING, anim);
-        animCom.animations.put(StateComponent.STATE_HIT, anim);
+        animCom.animations.put(STATE_NORMAL.getId(), anim);
+        animCom.animations.put(STATE_MOVING.getId(), anim);
+        animCom.animations.put(STATE_JUMPING.getId(), anim);
+        animCom.animations.put(STATE_FALLING.getId(), anim);
+        animCom.animations.put(STATE_HIT.getId(), anim);
 
         position.position.set(10,1,0);
         texture.region = atlas.findRegion("player");
-        type.type = TypeComponent.PLAYER;
-        stateCom.set(StateComponent.STATE_NORMAL);
+        type.type = PLAYER;
+        stateCom.set(STATE_NORMAL);
         b2dbody.body.setUserData(entity);
 
         scom.body = b2dbody.body;
@@ -250,7 +252,7 @@ public class LevelFactory {
             body.body = bodyFactory.makeBoxPolyBody((i * 40),30,1,60, STONE, KinematicBody,true);
             position.position.set((i * 40), 30, 0);
             texture.region = tex;
-            type.type = TypeComponent.SCENERY;
+            type.type = SCENERY;
 
             entity.add(body);
             entity.add(position);
@@ -271,7 +273,7 @@ public class LevelFactory {
         TypeComponent type = engine.createComponent(TypeComponent.class);
         WaterFloorComponent waterFloor = engine.createComponent(WaterFloorComponent.class);
 
-        type.type = TypeComponent.ENEMY;
+        type.type = ENEMY;
         texture.region = waterTex;
         body.body = bodyFactory.makeBoxPolyBody(20,-40,40,44, STONE, KinematicBody,true);
         position.position.set(20,-15,0);
@@ -307,11 +309,11 @@ public class LevelFactory {
         bodyFactory.makeAllFixturesSensors(body.body);
         position.position.set(x,y,0);
         texture.region = bulletTex;
-        Animation anim = new Animation(0.05f,FLGTUtils.spriteSheetToFrames(atlas.findRegion("FlameSpriteAnimation"), 7, 1));
+        Animation anim = new Animation(0.05f,(Object) FLGTUtils.spriteSheetToFrames(atlas.findRegion("FlameSpriteAnimation"), 7, 1));
         anim.setPlayMode(Animation.PlayMode.LOOP);
         animCom.animations.put(0, anim);
 
-        type.type = TypeComponent.BULLET;
+        type.type = BULLET;
         body.body.setUserData(entity);
         bul.xVel = xVel;
         bul.yVel = yVel;
@@ -384,8 +386,8 @@ public class LevelFactory {
 
         position.position.set(x,y,0);
         texture.region = atlas.findRegion("player");
-        type.type = TypeComponent.ENEMY;
-        stateCom.set(StateComponent.STATE_NORMAL);
+        type.type = ENEMY;
+        stateCom.set(STATE_NORMAL);
         body.body.setUserData(entity);
         scom.body = body.body;
         enemy.enemyType = CLOUD;

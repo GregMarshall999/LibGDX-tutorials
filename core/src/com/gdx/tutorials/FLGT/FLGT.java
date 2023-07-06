@@ -17,7 +17,8 @@ public class FLGT extends Game {
     public void create() {
         DisplayUtility.changeScreen(STARTUP, this);
 
-        assetManager.queueAddAllMusic().finishLoading();
+        assetManager.queueAddMusic();
+        assetManager.finishLoading();
         music = assetManager.get(FLGTAssets.MUSIC);
     }
 
