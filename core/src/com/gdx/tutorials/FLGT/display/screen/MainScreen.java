@@ -33,9 +33,9 @@ public class MainScreen extends AbstractFLGTScreen {
 
         this.applicationContext.assetManager.queueAddAllSounds().finishLoading();
 
-        atlas = this.applicationContext.assetManager.get(FLGTAssets.gameImages, TextureAtlas.class);
-        ping = this.applicationContext.assetManager.get(FLGTAssets.pingSound, Sound.class);
-        boing = this.applicationContext.assetManager.get(FLGTAssets.boingSound, Sound.class);
+        atlas = this.applicationContext.assetManager.get(FLGTAssets.GAME_IMAGES, TextureAtlas.class);
+        ping = this.applicationContext.assetManager.get(FLGTAssets.PING_SOUND, Sound.class);
+        boing = this.applicationContext.assetManager.get(FLGTAssets.BOING_SOUND, Sound.class);
         controller = new PCControls();
         engine = new PooledEngine();
         levelFactory = new LevelFactory(engine, atlas.findRegion("player"));

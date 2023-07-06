@@ -1,85 +1,61 @@
 package com.gdx.tutorials.FLGT.game;
 
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.assets.loaders.ParticleEffectLoader.ParticleEffectParameter;
 import com.badlogic.gdx.assets.loaders.SkinLoader.SkinParameter;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.graphics.g2d.ParticleEffect;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
 //todo prevent reloading loaded assets
 public class FLGTAssets extends AssetManager {
-    public static final String gameImages = "flgt/images/game.atlas";
-    public static final String loadingImages = "flgt/images/loading.atlas";
+    public static final String GAME_IMAGES = "flgt/images/game.atlas";
+    public static final String LOADING_IMAGES = "flgt/images/loading.atlas";
 
-    public static final String music = "flgt/music/gameMusic.mp3";
+    public static final String MUSIC = "flgt/music/gameMusic.mp3";
 
-    public static final String menuGlassySkin = "flgt/skins/glassy-ui.json";
-    private static final String menuGlassySkinAtlas = "flgt/skins/glassy-ui.atlas";
+    public static final String SMOKE_EFFECT = "flgt/particles/smoke.pe";
+    public static final String WATER_EFFECT = "flgt/particles/water.pe";
+    public static final String FIRE_EFFECT = "flgt/particles/fire.pe";
 
-    public static final String boingSound = "flgt/sounds/boing.wav";
-    public static final String pingSound = "flgt/sounds/ping.wav";
+    public static final String MENU_GLASSY_SKIN = "flgt/skins/glassy-ui.json";
 
-    /**
-     * Async assets game images file loading
-     * @return assets instance
-     */
-    public FLGTAssets queueAddAllGameImages() {
-        load(gameImages, TextureAtlas.class);
-        return this;
+    public static final String BOING_SOUND = "flgt/sounds/boing.wav";
+    public static final String PING_SOUND = "flgt/sounds/ping.wav";
+
+    public void queueAddFonts(){
+
     }
 
-    /**
-     * Async assets loading images file loading
-     * @return assets instance
-     */
-    public FLGTAssets queueAddAllLoadingImages() {
-        load(loadingImages, TextureAtlas.class);
-        return this;
+    public void queueAddParticleEffects(){
+        ParticleEffectParameter pep = new ParticleEffectParameter();
+        pep.atlasFile = "images/game.atlas";
+        load(SMOKE_EFFECT, ParticleEffect.class, pep);
+        load(WATER_EFFECT, ParticleEffect.class, pep);
+        load(FIRE_EFFECT, ParticleEffect.class, pep);
     }
 
-    /**
-     * Async assets fonts file loading
-     * @return assets instance
-     */
-    public FLGTAssets queueAddAllFonts() {
-        return this;
+    public void queueAddImages(){
+        load(GAME_IMAGES, TextureAtlas.class);
     }
 
-    /**
-     * Async assets particles file loading
-     * @return assets instance
-     */
-    public FLGTAssets queueAddAllParticles() {
-        return this;
+    public void queueAddLoadingImages(){
+        load(LOADING_IMAGES, TextureAtlas.class);
     }
 
-    /**
-     * Async assets music file loading
-     * @return assets instance
-     */
-    public FLGTAssets queueAddAllMusic() {
-        load(music, Music.class);
-        return this;
+    public void queueAddSkin(){
+        SkinParameter params = new SkinParameter("flgt/skin/glassy-ui.atlas");
+        load(MENU_GLASSY_SKIN, Skin.class, params);
     }
 
-    /**
-     * Async assets skins file loading
-     * @return assets instance
-     */
-    public FLGTAssets queueAddAllSkins() {
-        SkinParameter params = new SkinParameter(menuGlassySkinAtlas);
-        load(menuGlassySkin, Skin.class, params);
-        return this;
+    public void queueAddMusic(){
+        load(MUSIC, Music.class);
     }
 
-    /**
-     * Async assets sounds file loading
-     * @return assets instance
-     */
-    public FLGTAssets queueAddAllSounds() {
-        load(boingSound, Sound.class);
-        load(pingSound, Sound.class);
-        return this;
+    public void queueAddSounds(){
+        load(BOING_SOUND, Sound.class);
+        load(PING_SOUND, Sound.class);
     }
 }

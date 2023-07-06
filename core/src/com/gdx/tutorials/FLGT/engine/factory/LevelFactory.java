@@ -46,7 +46,7 @@ public class LevelFactory {
     public LevelFactory(PooledEngine en, FLGTAssets assMan) {
         engine = en;
         this.assman = assMan;
-        this.atlas = assMan.get(FLGTAssets.gameImages, TextureAtlas.class);;
+        this.atlas = assMan.get(FLGTAssets.GAME_IMAGES, TextureAtlas.class);;
         floorTex = atlas.findRegion("reallybadlydrawndirt");
         enemyTex = atlas.findRegion("waterdrop");
 

@@ -165,7 +165,7 @@ public class StartupScreen extends AbstractFLGTScreen {
         assetManager.queueAddAllLoadingImages().finishLoading();
         System.out.println("Startup images load complete");
 
-        TextureAtlas atlas = assetManager.get(FLGTAssets.loadingImages);
+        TextureAtlas atlas = assetManager.get(FLGTAssets.LOADING_IMAGES);
         background = atlas.findRegion("flamebackground");
         copyRight = atlas.findRegion("copyright");
         title = atlas.findRegion("staying-alight-logo");

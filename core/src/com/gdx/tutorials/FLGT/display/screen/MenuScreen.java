@@ -14,7 +14,6 @@ import com.badlogic.gdx.scenes.scene2d.utils.TiledDrawable;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.gdx.tutorials.FLGT.FLGT;
 import com.gdx.tutorials.FLGT.game.FLGTAssets;
-import com.gdx.tutorials.FLGT.display.DisplayUtility;
 
 public class MenuScreen extends AbstractFLGTScreen {
     private final Stage stage;
@@ -28,8 +27,8 @@ public class MenuScreen extends AbstractFLGTScreen {
         super(context);
 
         assetManager.queueAddAllSkins().finishLoading();
-        Skin skin = assetManager.get(FLGTAssets.menuGlassySkin);
-        TextureAtlas atlas = assetManager.get(FLGTAssets.loadingImages);
+        Skin skin = assetManager.get(FLGTAssets.MENU_GLASSY_SKIN);
+        TextureAtlas atlas = assetManager.get(FLGTAssets.LOADING_IMAGES);
         TextureRegion background = atlas.findRegion("flamebackground");
 
         stage = new Stage(new ScreenViewport());

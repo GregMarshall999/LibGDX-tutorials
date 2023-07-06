@@ -32,7 +32,7 @@ public class PreferencesScreen extends AbstractFLGTScreen {
         super(context);
 
         assetManager.queueAddAllSkins().finishLoading();
-        Skin skin = assetManager.get(FLGTAssets.menuGlassySkin);
+        Skin skin = assetManager.get(FLGTAssets.MENU_GLASSY_SKIN);
 
         stage = new Stage(new ScreenViewport());
         table = new Table();
